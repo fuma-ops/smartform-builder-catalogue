@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SMARTFORM BUILDER - Catalogue de Licence Premium</title>
+<title>SMARTFORM BUILDER - La Plateforme Tout-en-Un</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -28,8 +28,9 @@ body{font-family:'Inter',sans-serif;color:#1e293b;background:#fff;overflow-x:hid
 .hero-content{position:relative;z-index:1;max-width:900px}
 .hero h1{font-size:4.5rem;font-weight:900;letter-spacing:-0.04em;line-height:1.1;margin-bottom:24px}
 .hero h1 span{background:linear-gradient(135deg,#818cf8,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{font-size:1.4rem;color:#94a3b8;max-width:650px;margin:0 auto 40px}
+.hero p{font-size:1.25rem;color:#94a3b8;max-width:750px;margin:0 auto 20px;line-height:1.6}
 .hero-badge{display:inline-block;background:rgba(99,102,241,0.2);border:1px solid rgba(99,102,241,0.4);color:#a5b4fc;padding:8px 24px;border-radius:999px;font-size:0.9rem;font-weight:600;margin-bottom:30px;letter-spacing:0.05em}
+.quote-box{background:rgba(255,255,255,0.05);border-left:4px solid #34d399;padding:20px 30px;margin:30px auto;max-width:600px;font-style:italic;font-size:1.3rem;color:#e2e8f0;border-radius:0 12px 12px 0}
 
 /* ===== SECTIONS ===== */
 .section{padding:100px 40px;max-width:1200px;margin:0 auto;page-break-inside:avoid;break-inside:avoid}
@@ -50,9 +51,9 @@ body{font-family:'Inter',sans-serif;color:#1e293b;background:#fff;overflow-x:hid
 .section-tag-light{background:rgba(255,255,255,0.15);color:#fff}
 .section-tag-white{background:rgba(255,255,255,0.2);color:#fff}
 
-h2{font-size:3rem;font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:20px}
+h2{font-size:2.8rem;font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:20px}
 h3{font-size:1.5rem;font-weight:700;margin-bottom:16px}
-.subtitle{font-size:1.15rem;color:#64748b;max-width:700px;margin-bottom:50px;line-height:1.7}
+.subtitle{font-size:1.15rem;color:#64748b;max-width:700px;margin-bottom:40px;line-height:1.7}
 .subtitle-light{color:#94a3b8}
 
 /* ===== LAYOUT SPLIT ===== */
@@ -103,64 +104,34 @@ h3{font-size:1.5rem;font-weight:700;margin-bottom:16px}
   transition:background 0.3s;
 }
 .lightbox-close:hover{background:rgba(255,255,255,0.25)}
-.lightbox-caption{
-  position:fixed;bottom:30px;left:50%;transform:translateX(-50%);
-  color:#fff;font-size:1rem;background:rgba(0,0,0,0.6);
-  padding:10px 24px;border-radius:12px;z-index:10000;
-}
 
-/* ===== FEATURE PILLS ===== */
+/* ===== PILLS & CARDS ===== */
 .pill-grid{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0}
 .pill{
   display:inline-flex;align-items:center;gap:8px;
   background:#f1f5f9;padding:10px 20px;border-radius:12px;
-  font-size:0.95rem;font-weight:500;color:#334155;
-  border:1px solid #e2e8f0;
+  font-size:0.95rem;font-weight:500;color:#334155;border:1px solid #e2e8f0;
 }
-.pill-dark{background:rgba(255,255,255,0.08);color:#e2e8f0;border-color:rgba(255,255,255,0.1)}
-.pill-icon{font-size:1.1rem}
-
-/* ===== FEATURE CARDS ===== */
-.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:40px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:30px}
 .card{
   background:#fff;padding:32px;border-radius:20px;
   border:1px solid #e2e8f0;transition:all 0.3s ease;
 }
 .card:hover{transform:translateY(-6px);box-shadow:0 20px 40px -12px rgba(0,0,0,0.15);border-color:#6366f1}
-.card-icon{font-size:2.5rem;margin-bottom:16px}
 .card h4{font-size:1.15rem;font-weight:700;margin-bottom:10px;color:#0f172a}
 .card p{color:#64748b;line-height:1.7;font-size:0.95rem}
-
 .card-dark{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1)}
 .card-dark:hover{border-color:#818cf8;box-shadow:0 20px 40px -12px rgba(99,102,241,0.3)}
 .card-dark h4{color:#fff}
 .card-dark p{color:#94a3b8}
 
-/* ===== TABLE ===== */
-.pro-table{width:100%;border-collapse:collapse;margin:30px 0;border-radius:16px;overflow:hidden;box-shadow:0 4px 6px -1px rgba(0,0,0,0.05)}
-.pro-table th{background:#0f172a;color:#fff;padding:16px 20px;text-align:left;font-weight:600;font-size:0.95rem}
-.pro-table td{padding:16px 20px;border-bottom:1px solid #f1f5f9;font-size:0.95rem;color:#475569}
-.pro-table tr:last-child td{border-bottom:none}
-.pro-table tr:hover td{background:#f8fafc}
-
-/* ===== RIGHTS COMPARISON ===== */
-.rights-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:40px}
-.rights-card{padding:35px;border-radius:20px;border:2px solid}
-.rights-admin{background:#fef3c7;border-color:#f59e0b}
-.rights-user{background:#ecfdf5;border-color:#10b981}
-.rights-card h4{font-size:1.3rem;margin-bottom:16px}
-.rights-card ul{list-style:none;padding:0}
-.rights-card li{padding:8px 0;font-size:0.95rem;display:flex;align-items:center;gap:10px}
-
-/* ===== CASE STUDY ===== */
-.usecase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
-.usecase{
-  background:rgba(255,255,255,0.08);padding:35px;border-radius:20px;
-  border:1px solid rgba(255,255,255,0.1);text-align:center;
+/* ===== STEP CARDS (QUICK START) ===== */
+.step-card{position:relative;z-index:1;overflow:hidden;padding:24px}
+.step-number{
+  position:absolute;top:-10px;right:10px;
+  font-size:6rem;font-weight:900;color:rgba(99,102,241,0.08);
+  z-index:-1;line-height:1;
 }
-.usecase-icon{font-size:3rem;margin-bottom:16px}
-.usecase h4{color:#fff;font-size:1.15rem;margin-bottom:10px}
-.usecase p{color:#94a3b8;font-size:0.9rem;line-height:1.6}
 
 /* ===== HIGHLIGHT ===== */
 .highlight-strip{
@@ -179,21 +150,11 @@ h3{font-size:1.5rem;font-weight:700;margin-bottom:16px}
   box-shadow:0 10px 25px rgba(0,0,0,0.15);
 }
 .demo-btn:hover{transform:translateY(-4px);box-shadow:0 15px 35px rgba(0,0,0,0.25)}
-.demo-creds{
-  background:rgba(255,255,255,0.15);padding:24px 30px;border-radius:16px;
-  margin-top:30px;display:inline-block;text-align:left;
-  border:1px solid rgba(255,255,255,0.3);
-}
-.demo-creds code{
-  background:rgba(255,255,255,0.2);padding:3px 10px;border-radius:6px;
-  font-family:monospace;font-size:1.1rem;
-}
 
 /* ===== FOOTER ===== */
 .footer{
   background:#0f172a;color:#94a3b8;text-align:center;
   padding:60px 40px;font-size:0.9rem;
-  page-break-inside:avoid;break-inside:avoid;
 }
 .footer strong{color:#fff}
 
@@ -203,27 +164,7 @@ h3{font-size:1.5rem;font-weight:700;margin-bottom:16px}
   .split-reverse{direction:ltr}
   .hero h1{font-size:2.5rem}
   h2{font-size:2rem}
-  .usecase-grid{grid-template-columns:1fr}
-  .rights-grid{grid-template-columns:1fr}
   .section,.section-dark,.section-accent,.section-light,.section-demo{padding:60px 20px}
-}
-
-/* ===== PRINT / PDF ===== */
-@media print{
-  .hero{min-height:auto;padding:80px 40px;page-break-after:always}
-  .section,.section-dark,.section-accent,.section-light,.section-demo{
-    page-break-inside:avoid;break-inside:avoid;padding:60px 40px;
-  }
-  .split{page-break-inside:avoid;break-inside:avoid}
-  .card-grid{page-break-inside:avoid;break-inside:avoid}
-  .screenshot{box-shadow:none;border:2px solid #ddd}
-  .screenshot::after{display:none}
-  .screenshot:hover,.card:hover{transform:none}
-  .lightbox-overlay{display:none!important}
-  h2{page-break-after:avoid;break-after:avoid}
-  .usecase-grid{page-break-inside:avoid;break-inside:avoid}
-  .rights-grid{page-break-inside:avoid;break-inside:avoid}
-  .pro-table{page-break-inside:avoid;break-inside:avoid}
 }
 </style>
 </head>
@@ -233,90 +174,108 @@ h3{font-size:1.5rem;font-weight:700;margin-bottom:16px}
 <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
   <div class="lightbox-close" onclick="closeLightbox()">✕</div>
   <img id="lightbox-img" src="" alt="">
-  <div class="lightbox-caption" id="lightbox-caption"></div>
 </div>
 
 <!-- ==================== HERO ==================== -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-badge">LICENCE PREMIUM 2026</div>
+    <div class="hero-badge">COLLECTE DE DONNÉES INTELLIGENTE</div>
     <h1>Bienvenue dans<br><span>SMARTFORM BUILDER</span></h1>
-    <p>La solution SaaS tout-en-un pour créer des formulaires intelligents, gérer des rendez-vous et centraliser vos données clients. Propulsée par Google Workspace.</p>
-  </div>
-</section>
-
-<!-- ==================== 1. DASHBOARD ==================== -->
-<section class="section">
-  <div class="split">
-    <div>
-      <span class="section-tag">Tableau de Bord</span>
-      <h2>Vos Projets,<br>au Premier Coup d'Oeil</h2>
-      <p class="subtitle">Retrouvez tous vos formulaires sur une interface claire et intuitive. Chaque projet est affiché sous forme de carte avec un accès direct aux actions essentielles.</p>
-      <div class="pill-grid">
-        <span class="pill"><span class="pill-icon">📂</span> Ouvrir le formulaire</span>
-        <span class="pill"><span class="pill-icon">✏️</span> Éditer la structure</span>
-        <span class="pill"><span class="pill-icon">🔗</span> Copier le lien public</span>
-        <span class="pill"><span class="pill-icon">📊</span> Exporter les données</span>
-        <span class="pill"><span class="pill-icon">🗑️</span> Supprimer le projet</span>
-      </div>
-    </div>
-    <div class="screenshot" onclick="openLightbox(this)" data-caption="Tableau de Bord — Vue d'ensemble de tous vos formulaires">
-      <img src="my_forms.png" alt="Tableau de Bord SMARTFORM BUILDER">
+    <p>Oubliez les formulaires ennuyeux et les processus manuels. Transformez la façon dont vous interagissez avec vos clients, vos patients ou vos équipes.</p>
+    <p>Notre plateforme a été conçue pour être à la fois incroyablement puissante sous le capot et d'une simplicité déconcertante à utiliser. Que vous soyez un coach sportif, une clinique médicale, un formateur ou une entreprise, l'outil s'adapte à vous.</p>
+    <div class="quote-box">
+      "Créez des formulaires qui travaillent pour vous, pas l'inverse."
     </div>
   </div>
 </section>
 
-<!-- ==================== 2. CREATE FORM ==================== -->
+<!-- ==================== 1. CREATE FORM (VISUEL) ==================== -->
 <section class="section-light">
   <div class="inner">
     <div class="split split-reverse">
       <div>
-        <span class="section-tag">Création de Formulaires</span>
-        <h2>Construisez des Formulaires Puissants</h2>
-        <p class="subtitle">Le module <strong>Create Form</strong> vous offre un contrôle total sur chaque aspect de votre formulaire : identité visuelle, types de champs, logique conditionnelle et options avancées.</p>
-        <div class="pill-grid">
-          <span class="pill"><span class="pill-icon">📝</span> Short text</span>
-          <span class="pill"><span class="pill-icon">📄</span> Long text</span>
-          <span class="pill"><span class="pill-icon">🔢</span> Number</span>
-          <span class="pill"><span class="pill-icon">📅</span> Date</span>
-          <span class="pill"><span class="pill-icon">📋</span> List</span>
-          <span class="pill"><span class="pill-icon">🔘</span> Single choice</span>
-          <span class="pill"><span class="pill-icon">☑️</span> Checkboxes</span>
+        <span class="section-tag">Fonctionnalité Clé 1</span>
+        <h2>Constructeur Visuel<br>et Intuitif</h2>
+        <p class="subtitle">Créez des formulaires magnifiques et intelligents en quelques clics. Notre interface visuelle vous permet de construire des questionnaires sans écrire une seule ligne de code grâce au glisser-déposer.</p>
+        
+        <div class="card-grid" style="grid-template-columns:1fr;margin-top:0">
+          <div class="card step-card">
+            <h4>🔘 Champs Variés</h4>
+            <p>Texte court, texte long, nombres, dates, listes déroulantes, choix multiples, cases à cocher.</p>
+          </div>
+          <div class="card step-card">
+            <h4>🧠 Logique Conditionnelle</h4>
+            <p>Affichez ou masquez des questions en fonction des réponses précédentes. Rendez vos formulaires plus courts et plus pertinents.</p>
+          </div>
+          <div class="card step-card">
+            <h4>📐 Support Mathématique</h4>
+            <p>Intégrez des formules complexes directement dans vos questions grâce au support de KaTeX. Parfait pour les quiz techniques.</p>
+          </div>
         </div>
       </div>
-      <div class="screenshot" onclick="openLightbox(this)" data-caption="Types de Champs — Short text, Long text, Number, Date, List, Single choice, Checkboxes">
-        <img src="create_form_fields.png" alt="Types de Champs Disponibles">
+      <div class="screenshot" onclick="openLightbox(this)">
+        <img src="create_form_fields.png" alt="Constructeur Visuel">
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== 3. CHAMPS AVANCÉS ==================== -->
+<!-- ==================== 2. BOOKING ==================== -->
 <section class="section">
   <div class="split">
-    <div class="screenshot" onclick="openLightbox(this)" data-caption="Configuration Avancée — Identity, Fields, Logic, Required, Unique ID">
-      <img src="create_form_advanced.png" alt="Champs Avancés et Logique Conditionnelle">
+    <div class="screenshot" onclick="openLightbox(this)">
+      <img src="crm_rdv.png" alt="Module de Rendez-vous">
     </div>
     <div>
-      <span class="section-tag">Fonctionnalités Avancées</span>
-      <h2>Logique Conditionnelle<br>& Champs Intelligents</h2>
-      <p class="subtitle">Rendez vos formulaires dynamiques et intelligents grâce à des options avancées qui s'adaptent aux réponses de vos utilisateurs.</p>
-      <div class="card-grid" style="grid-template-columns:1fr">
-        <div class="card" style="padding:24px">
-          <h4>🧠 Logique d'Affichage (Logic)</h4>
-          <p>Affichez ou masquez des champs en fonction des réponses précédentes. Ex : "Si Sexe = Féminin, afficher Date dernières règles".</p>
+      <span class="section-tag">Fonctionnalité Clé 2</span>
+      <h2>Module de Rendez-vous<br>Intégré</h2>
+      <p class="subtitle">Transformez n'importe quel formulaire en un puissant système de prise de rendez-vous. Fini les allers-retours par email pour trouver un créneau !</p>
+      
+      <div class="card-grid" style="grid-template-columns:1fr 1fr">
+        <div class="card">
+          <h4>📅 Calendrier Intelligent</h4>
+          <p>Le client voit uniquement les créneaux disponibles selon vos horaires, vos pauses et la capacité max.</p>
         </div>
-        <div class="card" style="padding:24px">
-          <h4>🔒 Champs Requis & ID Unique</h4>
-          <p>Forcez la saisie des informations critiques et générez des identifiants uniques pour chaque soumission.</p>
+        <div class="card">
+          <h4>🔄 Sync Google Agenda</h4>
+          <p>Chaque rendez-vous confirmé est automatiquement ajouté à votre Google Agenda. Plus de doublons !</p>
         </div>
-        <div class="card" style="padding:24px">
-          <h4>📐 Support Mathématique</h4>
-          <p>Intégrez des écritures mathématiques complexes dans vos questions. Idéal pour les quiz scientifiques et académiques.</p>
+        <div class="card">
+          <h4>✅ Validation Manuelle</h4>
+          <p>Acceptez automatiquement ou approuvez manuellement chaque RDV pour garder le contrôle.</p>
         </div>
-        <div class="card" style="padding:24px">
-          <h4>🖼️ Images de Question</h4>
-          <p>Ajoutez des visuels à chaque question pour illustrer vos propos, vos produits ou vos cas cliniques.</p>
+        <div class="card">
+          <h4>📧 Notifications Automatisées</h4>
+          <p>Envoyez des emails de confirmation, d'annulation ou de modification entièrement personnalisés.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 3. CRM ==================== -->
+<section class="section-accent">
+  <div class="inner">
+    <span class="section-tag section-tag-white">Fonctionnalité Clé 3</span>
+    <h2 style="color:#fff">CRM Intégré : Votre Base<br>de Données Centralisée</h2>
+    <p class="subtitle" style="color:rgba(255,255,255,0.85)">Chaque réponse est automatiquement sauvegardée dans un CRM puissant. Dites adieu aux feuilles de calcul désordonnées.</p>
+
+    <div class="split" style="margin-top:40px">
+      <div class="screenshot" onclick="openLightbox(this)" style="box-shadow:0 25px 50px -12px rgba(0,0,0,0.4)">
+        <img src="crm_patient.png" alt="CRM Patient">
+      </div>
+      <div>
+        <div class="card card-dark step-card" style="margin-bottom:15px">
+          <h4>📊 Vue Tableau de Bord</h4>
+          <p>Visualisez toutes les soumissions en un coup d'œil, triées et organisées sous votre formulaire.</p>
+        </div>
+        <div class="card card-dark step-card" style="margin-bottom:15px">
+          <h4>🔍 Recherche et Filtres</h4>
+          <p>Retrouvez instantanément une information client grâce à la barre de recherche intelligente.</p>
+        </div>
+        <div class="card card-dark step-card">
+          <h4>⚡ Actions Rapides (PDF)</h4>
+          <p>Modifiez, supprimez ou téléchargez n'importe quelle soumission en format PDF en un seul clic.</p>
         </div>
       </div>
     </div>
@@ -326,214 +285,126 @@ h3{font-size:1.5rem;font-weight:700;margin-bottom:16px}
 <!-- ==================== 4. QUIZ MODE ==================== -->
 <section class="section-dark">
   <div class="inner">
-    <div class="split">
+    <div class="split split-reverse">
       <div>
-        <span class="section-tag section-tag-light">Module Quiz</span>
-        <h2 style="color:#fff">L'Excellence<br>Pédagogique</h2>
-        <p class="subtitle subtitle-light">Transformez n'importe quel formulaire en plateforme d'examen sécurisée avec auto-correction, timer anti-triche et gestion des points.</p>
-        <div class="highlight-strip" style="background:rgba(255,255,255,0.1);border-left-color:#818cf8">
-          <p style="color:#e2e8f0"><strong style="color:#a5b4fc">⚡ Anti-Triche Intégré :</strong> Timer avec compte à rebours visible, période d'ouverture programmable et limite de tentatives par navigateur.</p>
+        <span class="section-tag section-tag-light">Fonctionnalité Clé 4</span>
+        <h2 style="color:#fff">Mode Quiz avec<br>Notation Automatique</h2>
+        <p class="subtitle subtitle-light">Créez des quiz, des évaluations ou des tests de connaissances en un clin d'œil, évaluez et engagez votre audience.</p>
+        
+        <div class="card card-dark step-card" style="margin-bottom:15px">
+          <h4>✅ Correction Automatique</h4>
+          <p>Définissez les bonnes réponses et le nombre de points. Le score total est calculé automatiquement.</p>
         </div>
-        <div class="card-grid" style="grid-template-columns:1fr 1fr">
-          <div class="card card-dark" style="padding:24px">
-            <h4>⏱️ Timer Anti-Triche</h4>
-            <p>Définissez un temps limite. Un compte à rebours s'affiche pour garantir l'équité entre tous les participants.</p>
-          </div>
-          <div class="card card-dark" style="padding:24px">
-            <h4>✅ Auto-Correction</h4>
-            <p>Définissez la bonne réponse (CorrectAnswer) et les points par question. Le score final est calculé instantanément.</p>
-          </div>
-          <div class="card card-dark" style="padding:24px">
-            <h4>📅 Période d'Ouverture</h4>
-            <p>Programmez les dates et heures exactes de début et de fin de validité du quiz. Fermeture automatique.</p>
-          </div>
-          <div class="card card-dark" style="padding:24px">
-            <h4>🚫 Limite de Participation</h4>
-            <p>Restreignez le nombre de tentatives par navigateur pour éviter les soumissions multiples.</p>
-          </div>
+        <div class="card card-dark step-card" style="margin-bottom:15px">
+          <h4>⏱️ Timer Anti-Triche</h4>
+          <p>Compte à rebours visible, période d'ouverture programmable et limite de tentatives par utilisateur.</p>
+        </div>
+        <div class="card card-dark step-card">
+          <h4>📈 Calcul du Score</h4>
+          <p>Les résultats finaux s'affichent instantanément dans votre CRM, vous faisant gagner un temps précieux.</p>
         </div>
       </div>
-      <div class="screenshot screenshot-dark" onclick="openLightbox(this)" data-caption="Module Quiz — Timer, Auto-Correction, Période d'Ouverture, Limite de Participation">
-        <img src="create_form_booking.png" alt="Configuration Quiz et Booking">
+      <div class="screenshot screenshot-dark" onclick="openLightbox(this)">
+        <img src="create_form_booking.png" alt="Configuration Quiz">
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== 5. BOOKING ==================== -->
-<section class="section">
-  <div class="split split-reverse">
-    <div>
-      <span class="section-tag">Module Booking</span>
-      <h2>Système de Rendez-vous<br>Professionnel</h2>
-      <p class="subtitle">Un système de réservation complet intégré à Google Calendar avec notifications e-mail automatiques et gestion des statuts.</p>
-      <div class="card-grid" style="grid-template-columns:1fr">
-        <div class="card" style="padding:24px">
-          <h4>📅 Synchronisation Google Calendar</h4>
-          <p>Les rendez-vous confirmés sont automatiquement ajoutés à votre calendrier. Fini les doubles réservations !</p>
-        </div>
-        <div class="card" style="padding:24px">
-          <h4>⚙️ Configuration Fine</h4>
-          <p>Définissez la capacité par créneau, la durée, les heures de travail et les pauses pour un contrôle total.</p>
-        </div>
-        <div class="card" style="padding:24px">
-          <h4>📧 E-mails Stylisés Automatiques</h4>
-          <p>Vos clients reçoivent des e-mails de confirmation, modification ou annulation au design professionnel.</p>
-        </div>
-      </div>
-    </div>
-    <div class="screenshot" onclick="openLightbox(this)" data-caption="Formulaire de Rendez-vous RDV VISA — avec CRM intégré en dessous">
-      <img src="crm_rdv.png" alt="Formulaire de Rendez-vous avec CRM">
-    </div>
-  </div>
-</section>
-
-<!-- ==================== 6. APPOINTMENTS ==================== -->
-<section class="section-light">
-  <div class="inner">
-    <div class="split">
-      <div class="screenshot" onclick="openLightbox(this)" data-caption="Gestion des Rendez-vous — Filtres All / Pending / Confirmed">
-        <img src="appointments.png" alt="Gestion des Rendez-vous">
-      </div>
-      <div>
-        <span class="section-tag">Gestion des RDV</span>
-        <h2>Validez vos Rendez-vous<br>en un Clic</h2>
-        <p class="subtitle">L'interface <strong>Appointments</strong> centralise toutes les demandes de rendez-vous avec un système de filtres et de validation ultra-rapide.</p>
-        <div class="pill-grid">
-          <span class="pill" style="background:#fef3c7;color:#92400e;border-color:#fde68a"><span class="pill-icon">🟡</span> Pending (En attente)</span>
-          <span class="pill" style="background:#ecfdf5;color:#065f46;border-color:#a7f3d0"><span class="pill-icon">🟢</span> Confirmed (Validé)</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="split" style="margin-top:80px">
-      <div>
-        <h3>Panneau de Validation</h3>
-        <p class="subtitle">Cliquez sur un rendez-vous pour ouvrir le panneau latéral. Consultez les détails (date, heure, e-mail du client) et validez d'un simple clic sur <strong>"Approve Appt"</strong>.</p>
-        <div class="highlight-strip">
-          <p><strong>💡 Astuce :</strong> Lorsque vous approuvez un rendez-vous, un événement est automatiquement créé dans votre Google Calendar et un e-mail de confirmation est envoyé au client.</p>
-        </div>
-      </div>
-      <div class="screenshot" onclick="openLightbox(this)" data-caption="Panneau de Validation — Détails du RDV + bouton Approve Appt">
-        <img src="approve_rdv.png" alt="Validation d'un Rendez-vous">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== 7. CRM / DATABASE ==================== -->
-<section class="section-accent">
-  <div class="inner">
-    <span class="section-tag section-tag-white">CRM & Database</span>
-    <h2 style="color:#fff">Vos Données, Votre Pouvoir</h2>
-    <p class="subtitle" style="color:rgba(255,255,255,0.85)">Chaque formulaire intègre un tableau <strong>Database</strong> interactif directement sous l'interface. Plus besoin d'ouvrir Google Sheets pour consulter, modifier ou supprimer vos données.</p>
-
-    <div class="split" style="margin-top:40px">
-      <div class="screenshot" onclick="openLightbox(this)" data-caption="CRM Rendez-vous — Date, User, RDV_Date, RDV_Time, RDV_Status, EMAIL" style="box-shadow:0 25px 50px -12px rgba(0,0,0,0.4)">
-        <img src="crm_rdv.png" alt="CRM Rendez-vous">
-      </div>
-      <div class="screenshot" onclick="openLightbox(this)" data-caption="CRM Patient — Full Name, Gender, Conditions, Symptoms, Date, Email" style="box-shadow:0 25px 50px -12px rgba(0,0,0,0.4)">
-        <img src="crm_patient.png" alt="CRM Patient">
-      </div>
-    </div>
-
-    <div style="margin-top:50px">
-      <table class="pro-table" style="background:#fff">
-        <thead>
-          <tr>
-            <th>Fonctionnalité</th>
-            <th>Description</th>
-            <th>Avantage</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Tableau CRM Intégré</strong></td>
-            <td>Visualisation en temps réel de toutes les soumissions.</td>
-            <td>Gain de temps considérable.</td>
-          </tr>
-          <tr>
-            <td><strong>Recherche Instantanée</strong></td>
-            <td>Barre de recherche intégrée pour filtrer les données.</td>
-            <td>Retrouvez un client en 1 seconde.</td>
-          </tr>
-          <tr>
-            <td><strong>Statuts en Couleur</strong></td>
-            <td>Badges visuels : Orange (En attente) / Vert (Confirmé).</td>
-            <td>Lecture immédiate de l'état des dossiers.</td>
-          </tr>
-          <tr>
-            <td><strong>Actions Directes</strong></td>
-            <td>Modifier, exporter ou supprimer depuis l'interface web.</td>
-            <td>Flexibilité et réactivité totales.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== 8. USERS & ACCESS ==================== -->
+<!-- ==================== 5. USERS & ACCESS ==================== -->
 <section class="section">
   <div class="split">
+    <div class="screenshot" onclick="openLightbox(this)">
+      <img src="users_access.png" alt="Gestion des Utilisateurs">
+    </div>
     <div>
-      <span class="section-tag">Gestion des Accès</span>
-      <h2>Admin vs Utilisateur :<br>Sécurité Totale</h2>
-      <p class="subtitle">L'application distingue clairement deux niveaux d'accès pour garantir la sécurité de vos données et la maîtrise de votre plateforme.</p>
+      <span class="section-tag">Fonctionnalité Clé 5</span>
+      <h2>Gestion d'Équipe et<br>Droits "À la Carte"</h2>
+      <p class="subtitle">Collaborez en toute sécurité. Créez des comptes pour vos collaborateurs et décidez précisément de ce qu'ils peuvent voir ou faire.</p>
 
-      <div class="rights-grid">
-        <div class="rights-card rights-admin">
-          <h4>👑 Administrateur</h4>
-          <ul>
-            <li>✅ Créer et publier des formulaires</li>
-            <li>✅ Configurer les modules Quiz & Booking</li>
-            <li>✅ Personnaliser l'application (Settings)</li>
-            <li>✅ Créer des comptes utilisateurs</li>
-            <li>✅ Assigner des formulaires aux utilisateurs</li>
-            <li>✅ Gérer les droits (Lecture, Édition, Suppression)</li>
-            <li>✅ Accès complet à tous les formulaires et données</li>
-          </ul>
+      <div class="card-grid" style="grid-template-columns:1fr">
+        <div class="card step-card">
+          <h4>👤 Rôles Personnalisés</h4>
+          <p>Donnez un accès restreint à un seul formulaire, ou un accès global à tous vos projets selon l'employé.</p>
         </div>
-        <div class="rights-card rights-user">
-          <h4>👤 Utilisateur</h4>
-          <ul>
-            <li>✅ Voir uniquement les formulaires assignés</li>
-            <li>✅ Consulter le CRM/Database des formulaires assignés</li>
-            <li>✅ Gérer les RDV des formulaires Booking assignés</li>
-            <li>❌ Pas d'accès à Create Form</li>
-            <li>❌ Pas d'accès aux Settings</li>
-            <li>❌ Pas d'accès à Users & Access</li>
-            <li>❌ Pas de création de nouveaux formulaires</li>
-          </ul>
+        <div class="card step-card">
+          <h4>🔐 Permissions Granulaires</h4>
+          <p>Décidez si un utilisateur peut simplement voir les données (Lecture), les modifier, ou même les supprimer.</p>
+        </div>
+        <div class="card step-card">
+          <h4>🧪 Mode Démo Sécurisé</h4>
+          <p>Créez un compte "Test" pour vos propres clients, leur permettant de découvrir la puissance de l'outil sans jamais toucher à vos paramètres ou données sensibles.</p>
         </div>
       </div>
-    </div>
-    <div class="screenshot" onclick="openLightbox(this)" data-caption="Users & Access — Création de comptes et assignation de formulaires avec droits granulaires">
-      <img src="users_access.png" alt="Gestion des Utilisateurs et Accès">
     </div>
   </div>
 </section>
 
-<!-- ==================== 9. SETTINGS ==================== -->
+<!-- ==================== 6. SETTINGS (WHITE LABEL) ==================== -->
 <section class="section-light">
   <div class="inner">
     <div class="split split-reverse">
       <div>
-        <span class="section-tag">Personnalisation</span>
-        <h2>Marque Blanche<br>100% Personnalisable</h2>
-        <p class="subtitle">Depuis l'onglet <strong>Settings</strong>, transformez l'application pour qu'elle reflète parfaitement votre identité ou celle de vos clients.</p>
-        <div class="pill-grid">
-          <span class="pill"><span class="pill-icon">🏷️</span> Nom de l'App</span>
-          <span class="pill"><span class="pill-icon">🎨</span> Couleur Primaire</span>
-          <span class="pill"><span class="pill-icon">🖼️</span> Logo Personnalisé</span>
-          <span class="pill"><span class="pill-icon">🌍</span> Langue (FR/EN/AR)</span>
-          <span class="pill"><span class="pill-icon">🎭</span> Motif de Fond</span>
-          <span class="pill"><span class="pill-icon">🔤</span> Police Moderne</span>
-          <span class="pill"><span class="pill-icon">↔️</span> Support RTL (Arabe)</span>
+        <span class="section-tag">Fonctionnalité Clé 6</span>
+        <h2>Marque Blanche : L'Appli<br>devient VOTRE Appli</h2>
+        <p class="subtitle">Faites de SmartForm Builder votre propre outil. En quelques clics, personnalisez l'interface pour qu'elle corresponde parfaitement à l'identité de votre entreprise.</p>
+        
+        <div class="card step-card" style="margin-bottom:15px">
+          <h4>🎨 Votre Logo, Vos Couleurs</h4>
+          <p>Changez le logo principal, l'icône, les couleurs des boutons, la police et le fond d'écran. Personnalisation visuelle totale.</p>
+        </div>
+        <div class="card step-card">
+          <h4>🌍 Multilingue & RTL</h4>
+          <p>L'interface s'adapte automatiquement à la langue de votre choix pour une expérience utilisateur sans friction :<br>
+          <strong>Français, Anglais, Espagnol, Allemand, Arabe (Support RTL intégré), Hébreu.</strong></p>
         </div>
       </div>
-      <div class="screenshot" onclick="openLightbox(this)" data-caption="Settings — Base Settings (Language, App Name, Logo) + Global Design (Colors, Background, Font)">
-        <img src="settings.png" alt="Paramètres de Personnalisation">
+      <div class="screenshot" onclick="openLightbox(this)">
+        <img src="settings.png" alt="Paramètres Marque Blanche">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== GUIDE DEMARRAGE ==================== -->
+<section class="section">
+  <div class="inner">
+    <div style="text-align:center">
+      <span class="section-tag">Tutoriel</span>
+      <h2 style="text-align:center">Guide de Démarrage Rapide</h2>
+      <p class="subtitle" style="text-align:center;margin:0 auto 50px">Votre Premier Formulaire complet et fonctionnel en moins de 5 minutes.</p>
+    </div>
+
+    <div class="card-grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+      <div class="card step-card">
+        <div class="step-number">1</div>
+        <h4>Connexion</h4>
+        <p>Connectez-vous à votre espace privé SmartForm Builder avec vos identifiants.</p>
+      </div>
+      <div class="card step-card">
+        <div class="step-number">2</div>
+        <h4>Nouveau Projet</h4>
+        <p>Sur le tableau de bord, cliquez simplement sur le bouton "Créer Formulaire".</p>
+      </div>
+      <div class="card step-card">
+        <div class="step-number">3</div>
+        <h4>Personnalisation</h4>
+        <p>Donnez un nom, choisissez une icône, vos couleurs, et votre police d'écriture.</p>
+      </div>
+      <div class="card step-card">
+        <div class="step-number">4</div>
+        <h4>Ajout des Champs</h4>
+        <p>Cliquez sur "Ajouter Champ", choisissez le type (texte, date, choix...) et configurez la question.</p>
+      </div>
+      <div class="card step-card">
+        <div class="step-number">5</div>
+        <h4>Modules Avancés</h4>
+        <p><em>(Optionnel)</em> Dans les paramètres, activez le Mode Rendez-vous ou le Mode Quiz selon votre besoin.</p>
+      </div>
+      <div class="card step-card">
+        <div class="step-number">6</div>
+        <h4>Publication</h4>
+        <p>Cliquez sur "Publier". Partagez votre lien public et regardez les réponses arriver dans votre base de données !</p>
       </div>
     </div>
   </div>
@@ -542,75 +413,24 @@ h3{font-size:1.5rem;font-weight:700;margin-bottom:16px}
 <!-- ==================== 10. DEMO EN LIGNE ==================== -->
 <section class="section-demo">
   <div class="inner" style="text-align:center">
-    <span class="section-tag section-tag-white">Essai Gratuit</span>
-    <h2 style="color:#fff;text-align:center">Testez Avant d'Acheter !</h2>
-    <p class="subtitle" style="color:rgba(255,255,255,0.85);text-align:center;margin:0 auto 40px;max-width:700px">Nous mettons à votre disposition un <strong>compte démo</strong> avec des formulaires pré-configurés. Explorez l'interface, consultez le CRM et gérez des rendez-vous en conditions réelles. <strong>Aucun risque</strong> : le compte démo a des droits limités (Utilisateur), vous ne pouvez ni créer ni modifier la configuration.</p>
+    <h2 style="color:#fff;text-align:center;margin-bottom:15px">Prêt à transformer vos interactions ?</h2>
+    <p class="subtitle" style="color:rgba(255,255,255,0.9);text-align:center;margin:0 auto 40px;max-width:700px">SmartForm Builder est bien plus qu'un simple créateur de formulaires. C'est le moteur de votre productivité. Testez notre environnement de démonstration dès aujourd'hui.</p>
 
     <a href="https://script.google.com/macros/s/AKfycbw_U2CEo5g8XRWFqJ7EM2PUdTtlxsvFL1mQV8dZzJS082wqIc11ovSZGT0QBCOZjf1q/exec" target="_blank" class="demo-btn">
       🚀 Essayer la Démo en Ligne
     </a>
 
-    <div class="demo-creds">
-      <p style="margin-bottom:12px;font-weight:600;color:#fff;font-size:1.05rem">Identifiants de Démonstration :</p>
-      <p style="margin-bottom:8px;color:rgba(255,255,255,0.9)">Nom d'utilisateur : <code>demo</code></p>
-      <p style="margin-bottom:0;color:rgba(255,255,255,0.9)">Mot de passe : <code>demo2026</code></p>
-    </div>
-
-    <p style="margin-top:30px;font-size:0.9rem;color:rgba(255,255,255,0.7)">⚠️ Le compte démo est en lecture seule sur les formulaires assignés. Pour un accès Admin complet, contactez-nous pour obtenir votre licence.</p>
-  </div>
-</section>
-
-<!-- ==================== 11. CAS D'USAGE ==================== -->
-<section class="section-dark">
-  <div class="inner">
-    <div style="text-align:center">
-      <span class="section-tag section-tag-light">Cas d'Usage</span>
-      <h2 style="color:#fff;text-align:center">Conçu pour Tous les Métiers</h2>
-      <p class="subtitle subtitle-light" style="text-align:center;margin:0 auto 40px">Découvrez comment SMARTFORM BUILDER s'adapte à votre secteur d'activité.</p>
-    </div>
-
-    <div class="usecase-grid">
-      <div class="usecase">
-        <div class="usecase-icon">🏥</div>
-        <h4>Cabinet Médical</h4>
-        <p>Formulaire d'admission patient avec historique médical, logique conditionnelle et prise de rendez-vous intégrée. Visualisation CRM des dossiers patients.</p>
-      </div>
-      <div class="usecase">
-        <div class="usecase-icon">🎓</div>
-        <h4>Examen de Mathématiques</h4>
-        <p>Quiz avec support d'écriture mathématique, timer anti-triche de 45 minutes, auto-correction instantanée et export des résultats.</p>
-      </div>
-      <div class="usecase">
-        <div class="usecase-icon">🏢</div>
-        <h4>Agence de Visa</h4>
-        <p>Système de réservation de créneaux avec validation manuelle, notifications e-mail et synchronisation Google Calendar.</p>
-      </div>
-    </div>
-
-    <div class="usecase-grid" style="margin-top:24px">
-      <div class="usecase">
-        <div class="usecase-icon">📋</div>
-        <h4>Sondage Client</h4>
-        <p>Formulaire de satisfaction avec logique conditionnelle, champs requis et ID unique pour le suivi des réponses.</p>
-      </div>
-      <div class="usecase">
-        <div class="usecase-icon">🏫</div>
-        <h4>Inscription Scolaire</h4>
-        <p>Formulaire multi-étapes avec upload de documents, champs conditionnels et base de données centralisée.</p>
-      </div>
-      <div class="usecase">
-        <div class="usecase-icon">💼</div>
-        <h4>Recrutement RH</h4>
-        <p>Formulaire de candidature avec filtrage automatique, droits d'accès par recruteur et export des profils.</p>
-      </div>
+    <div style="background:rgba(255,255,255,0.15);padding:20px 30px;border-radius:16px;margin-top:30px;display:inline-block;border:1px solid rgba(255,255,255,0.3)">
+      <p style="margin-bottom:8px;color:#fff">Identifiant : <code style="background:rgba(0,0,0,0.2);padding:3px 8px;border-radius:4px">demo</code></p>
+      <p style="margin-bottom:0;color:#fff">Mot de passe : <code style="background:rgba(0,0,0,0.2);padding:3px 8px;border-radius:4px">demo2026</code></p>
     </div>
   </div>
 </section>
 
 <!-- ==================== FOOTER ==================== -->
 <footer class="footer">
-  <p style="font-size:1.5rem;margin-bottom:20px">💎</p>
-  <p><strong>SMARTFORM BUILDER</strong> — Catalogue de Licence Premium</p>
+  <p style="font-size:1.8rem;margin-bottom:15px">💎</p>
+  <p><strong>SMARTFORM BUILDER</strong></p>
   <p style="margin-top:8px">© 2026 Tous droits réservés</p>
 </footer>
 
@@ -618,9 +438,7 @@ h3{font-size:1.5rem;font-weight:700;margin-bottom:16px}
 <script>
 function openLightbox(el){
   const img=el.querySelector('img');
-  const caption=el.getAttribute('data-caption')||'';
   document.getElementById('lightbox-img').src=img.src;
-  document.getElementById('lightbox-caption').textContent=caption;
   document.getElementById('lightbox').classList.add('active');
   document.body.style.overflow='hidden';
 }
