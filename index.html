@@ -133,13 +133,15 @@ h3{font-size:1.5rem;font-weight:700;margin-bottom:16px}
   z-index:-1;line-height:1;
 }
 
-/* ===== HIGHLIGHT ===== */
-.highlight-strip{
-  background:linear-gradient(90deg,#fef3c7,#fde68a);
-  padding:24px 30px;border-radius:16px;margin:30px 0;
-  border-left:6px solid #f59e0b;
+/* ===== USE CASE CARDS ===== */
+.usecase-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:24px;margin-top:40px}
+.usecase{
+  background:rgba(255,255,255,0.08);padding:35px;border-radius:20px;
+  border:1px solid rgba(255,255,255,0.1);text-align:center;
 }
-.highlight-strip p{color:#92400e;font-weight:500;font-size:1rem;margin:0}
+.usecase-icon{font-size:3rem;margin-bottom:16px}
+.usecase h4{color:#fff;font-size:1.15rem;margin-bottom:10px}
+.usecase p{color:#94a3b8;font-size:0.9rem;line-height:1.6}
 
 /* ===== DEMO BUTTON ===== */
 .demo-btn{
@@ -164,6 +166,7 @@ h3{font-size:1.5rem;font-weight:700;margin-bottom:16px}
   .split-reverse{direction:ltr}
   .hero h1{font-size:2.5rem}
   h2{font-size:2rem}
+  .usecase-grid{grid-template-columns:1fr}
   .section,.section-dark,.section-accent,.section-light,.section-demo{padding:60px 20px}
 }
 </style>
@@ -410,7 +413,7 @@ h3{font-size:1.5rem;font-weight:700;margin-bottom:16px}
   </div>
 </section>
 
-<!-- ==================== 10. DEMO EN LIGNE ==================== -->
+<!-- ==================== DEMO EN LIGNE ==================== -->
 <section class="section-demo">
   <div class="inner" style="text-align:center">
     <h2 style="color:#fff;text-align:center;margin-bottom:15px">Prêt à transformer vos interactions ?</h2>
@@ -423,6 +426,50 @@ h3{font-size:1.5rem;font-weight:700;margin-bottom:16px}
     <div style="background:rgba(255,255,255,0.15);padding:20px 30px;border-radius:16px;margin-top:30px;display:inline-block;border:1px solid rgba(255,255,255,0.3)">
       <p style="margin-bottom:8px;color:#fff">Identifiant : <code style="background:rgba(0,0,0,0.2);padding:3px 8px;border-radius:4px">demo</code></p>
       <p style="margin-bottom:0;color:#fff">Mot de passe : <code style="background:rgba(0,0,0,0.2);padding:3px 8px;border-radius:4px">demo2026</code></p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CAS D'USAGE ==================== -->
+<section class="section-dark">
+  <div class="inner">
+    <div style="text-align:center">
+      <span class="section-tag section-tag-light">Cas d'Usage</span>
+      <h2 style="color:#fff;text-align:center">Conçu pour Tous les Métiers</h2>
+      <p class="subtitle subtitle-light" style="text-align:center;margin:0 auto 40px">Découvrez comment SMARTFORM BUILDER s'adapte à votre secteur d'activité.</p>
+    </div>
+
+    <div class="usecase-grid">
+      <div class="usecase">
+        <div class="usecase-icon">🏥</div>
+        <h4>Cabinet Médical</h4>
+        <p>Formulaire d'admission patient avec historique, logique conditionnelle et prise de rendez-vous intégrée.</p>
+      </div>
+      <div class="usecase">
+        <div class="usecase-icon">🎓</div>
+        <h4>Examen Éducatif</h4>
+        <p>Quiz avec support mathématique, timer anti-triche, auto-correction instantanée et export des résultats.</p>
+      </div>
+      <div class="usecase">
+        <div class="usecase-icon">🏢</div>
+        <h4>Agence de Services</h4>
+        <p>Système de réservation de créneaux avec validation manuelle, notifications e-mail et synchronisation Google Calendar.</p>
+      </div>
+       <div class="usecase">
+        <div class="usecase-icon">📋</div>
+        <h4>Sondage Client</h4>
+        <p>Formulaire de satisfaction avec logique conditionnelle, champs requis et ID unique pour le suivi des réponses.</p>
+      </div>
+      <div class="usecase">
+        <div class="usecase-icon">🏫</div>
+        <h4>Inscription Scolaire</h4>
+        <p>Formulaire multi-étapes avec upload de documents, champs conditionnels et base de données centralisée.</p>
+      </div>
+      <div class="usecase">
+        <div class="usecase-icon">💼</div>
+        <h4>Recrutement RH</h4>
+        <p>Formulaire de candidature avec filtrage automatique, droits d'accès par recruteur et export des profils.</p>
+      </div>
     </div>
   </div>
 </section>
