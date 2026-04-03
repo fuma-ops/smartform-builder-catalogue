@@ -69,6 +69,16 @@ h2{font-size:2.8rem;font-weight:800;letter-spacing:-0.03em;line-height:1.15;marg
 }
 .screenshot:hover{transform:scale(1.03)}
 .screenshot-dark{box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.1)}
+.screenshot::after{
+  content:'🔍 Cliquez pour agrandir';
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(0,0,0,0.7));
+  color:#fff;text-align:center;padding:20px 10px 12px;
+  font-size:0.85rem;font-weight:500;opacity:0;
+  transition:opacity 0.3s ease;
+}
+body.rtl .screenshot::after { content: '🔍 انقر للتكبير'; }
+.screenshot:hover::after{opacity:1}
 
 .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:30px}
 .card{
@@ -97,6 +107,13 @@ body.rtl .step-number {right: auto; left: 10px;}
 .usecase-icon{font-size:3rem;margin-bottom:16px}
 .usecase h4{color:#fff;font-size:1.15rem;margin-bottom:10px}
 .usecase p{color:#94a3b8;font-size:0.9rem;line-height:1.6}
+
+/* ===== LIGHTBOX ===== */
+.lightbox-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.92);z-index:9999;justify-content:center;align-items:center;cursor:zoom-out;padding:40px;}
+.lightbox-overlay.active{display:flex}
+.lightbox-overlay img{max-width:95%;max-height:90vh;border-radius:16px;box-shadow:0 25px 50px rgba(0,0,0,0.5);object-fit:contain;}
+.lightbox-close{position:fixed;top:20px;right:30px;color:#fff;font-size:2.5rem;cursor:pointer;z-index:10000;background:rgba(255,255,255,0.1);width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background 0.3s;}
+.lightbox-close:hover{background:rgba(255,255,255,0.25)}
 
 /* ===== SECTION TARIFS ===== */
 .pricing-card {
@@ -169,10 +186,16 @@ body.rtl .pricing-card li::before { margin-right: 0; margin-left: 10px; }
 </head>
 <body>
 
+<!-- ===== LIGHTBOX (Modal pour agrandir l'image) ===== -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-close" onclick="closeLightbox()">✕</div>
+  <img id="lightbox-img" src="" alt="Aperçu agrandi">
+</div>
+
 <!-- ==================== HERO ==================== -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-badge" data-translate-key="hero_badge">COLLECTE DE DONNÉES INTELLIGENTE</div>
+    <div data-translate-key="hero_badge">COLLECTE DE DONNÉES INTELLIGENTE</div>
     <h1 data-translate-key="hero_title">Bienvenue dans<br><span>SMARTFORM BUILDER</span></h1>
     <p data-translate-key="hero_p1">Oubliez les formulaires ennuyeux et les processus manuels. Transformez la façon dont vous interagissez avec vos clients, vos patients ou vos équipes.</p>
     <p data-translate-key="hero_p2">Notre plateforme a été conçue pour être à la fois incroyablement puissante sous le capot et d'une simplicité déconcertante à utiliser. Que vous soyez un coach sportif, une clinique médicale, un formateur ou une entreprise, l'outil s'adapte à vous.</p>
@@ -182,8 +205,7 @@ body.rtl .pricing-card li::before { margin-right: 0; margin-left: 10px; }
   </div>
 </section>
 
-<!-- ==================== FEATURES ==================== -->
-<!-- Chaque section a été rendue traduisible avec des 'data-translate-key' -->
+<!-- ==================== 1. CREATE FORM (VISUEL) ==================== -->
 <section class="section-light">
   <div class="inner">
     <div class="split split-reverse">
@@ -192,173 +214,102 @@ body.rtl .pricing-card li::before { margin-right: 0; margin-left: 10px; }
         <h2 data-translate-key="feature1_title">Constructeur Visuel<br>et Intuitif</h2>
         <p class="subtitle" data-translate-key="feature1_subtitle">Créez des formulaires magnifiques et intelligents en quelques clics. Notre interface visuelle vous permet de construire des questionnaires sans écrire une seule ligne de code grâce au glisser-déposer.</p>
         <div class="card-grid" style="grid-template-columns:1fr;margin-top:0">
-          <div class="card step-card">
-            <h4 data-translate-key="feature1_card1_title">🔘 Champs Variés</h4>
-            <p data-translate-key="feature1_card1_text">Texte court, texte long, nombres, dates, listes déroulantes, choix multiples, cases à cocher.</p>
-          </div>
-          <div class="card step-card">
-            <h4 data-translate-key="feature1_card2_title">🧠 Logique Conditionnelle</h4>
-            <p data-translate-key="feature1_card2_text">Affichez ou masquez des questions en fonction des réponses précédentes. Rendez vos formulaires plus courts et plus pertinents.</p>
-          </div>
-          <div class="card step-card">
-            <h4 data-translate-key="feature1_card3_title">📐 Support Mathématique</h4>
-            <p data-translate-key="feature1_card3_text">Intégrez des formules complexes directement dans vos questions grâce au support de KaTeX. Parfait pour les quiz techniques.</p>
-          </div>
+          <div class="card step-card"><h4 data-translate-key="feature1_card1_title">🔘 Champs Variés</h4><p data-translate-key="feature1_card1_text">Texte court, texte long, nombres, dates, listes déroulantes, choix multiples, cases à cocher.</p></div>
+          <div class="card step-card"><h4 data-translate-key="feature1_card2_title">🧠 Logique Conditionnelle</h4><p data-translate-key="feature1_card2_text">Affichez ou masquez des questions en fonction des réponses précédentes. Rendez vos formulaires plus courts et plus pertinents.</p></div>
+          <div class="card step-card"><h4 data-translate-key="feature1_card3_title">📐 Support Mathématique</h4><p data-translate-key="feature1_card3_text">Intégrez des formules complexes directement dans vos questions grâce au support de KaTeX. Parfait pour les quiz techniques.</p></div>
         </div>
       </div>
-      <div class="screenshot"><img src="create_form_fields.png" alt="Constructeur Visuel"></div>
+      <div class="screenshot" onclick="openLightbox(this)"><img src="create_form_fields.png" alt="Constructeur Visuel"></div>
     </div>
   </div>
 </section>
 
+<!-- ==================== 2. BOOKING ==================== -->
 <section class="section">
   <div class="split">
-    <div class="screenshot"><img src="crm_rdv.png" alt="Module de Rendez-vous"></div>
+    <div class="screenshot" onclick="openLightbox(this)"><img src="crm_rdv.png" alt="Module de Rendez-vous"></div>
     <div>
       <span class="section-tag" data-translate-key="feature2_tag">Fonctionnalité Clé 2</span>
       <h2 data-translate-key="feature2_title">Module de Rendez-vous<br>Intégré</h2>
       <p class="subtitle" data-translate-key="feature2_subtitle">Transformez n'importe quel formulaire en un puissant système de prise de rendez-vous. Fini les allers-retours par email pour trouver un créneau !</p>
       <div class="card-grid" style="grid-template-columns:1fr 1fr">
-        <div class="card">
-          <h4 data-translate-key="feature2_card1_title">📅 Calendrier Intelligent</h4>
-          <p data-translate-key="feature2_card1_text">Le client voit uniquement les créneaux disponibles selon vos horaires, vos pauses et la capacité max.</p>
-        </div>
-        <div class="card">
-          <h4 data-translate-key="feature2_card2_title">🔄 Sync Google Agenda</h4>
-          <p data-translate-key="feature2_card2_text">Chaque rendez-vous confirmé est automatiquement ajouté à votre Google Agenda. Plus de doublons !</p>
-        </div>
-        <div class="card">
-          <h4 data-translate-key="feature2_card3_title">✅ Validation Manuelle</h4>
-          <p data-translate-key="feature2_card3_text">Acceptez automatiquement ou approuvez manuellement chaque RDV pour garder le contrôle.</p>
-        </div>
-        <div class="card">
-          <h4 data-translate-key="feature2_card4_title">📧 Notifications Automatisées</h4>
-          <p data-translate-key="feature2_card4_text">Envoyez des emails de confirmation, d'annulation ou de modification entièrement personnalisés.</p>
-        </div>
+        <div class="card"><h4 data-translate-key="feature2_card1_title">📅 Calendrier Intelligent</h4><p data-translate-key="feature2_card1_text">Le client voit uniquement les créneaux disponibles selon vos horaires, vos pauses et la capacité max.</p></div>
+        <div class="card"><h4 data-translate-key="feature2_card2_title">🔄 Sync Google Agenda</h4><p data-translate-key="feature2_card2_text">Chaque rendez-vous confirmé est automatiquement ajouté à votre Google Agenda. Plus de doublons !</p></div>
+        <div class="card"><h4 data-translate-key="feature2_card3_title">✅ Validation Manuelle</h4><p data-translate-key="feature2_card3_text">Acceptez automatiquement ou approuvez manuellement chaque RDV pour garder le contrôle.</p></div>
+        <div class="card"><h4 data-translate-key="feature2_card4_title">📧 Notifications Automatisées</h4><p data-translate-key="feature2_card4_text">Envoyez des emails de confirmation, d'annulation ou de modification entièrement personnalisés.</p></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ==================== 3. CRM ==================== -->
 <section class="section-accent">
   <div class="inner">
     <span class="section-tag section-tag-light" data-translate-key="feature3_tag">Fonctionnalité Clé 3</span>
     <h2 data-translate-key="feature3_title">CRM Intégré : Votre Base<br>de Données Centralisée</h2>
     <p class="subtitle" style="color:#a5b4fc" data-translate-key="feature3_subtitle">Chaque réponse est automatiquement sauvegardée dans un CRM puissant. Dites adieu aux feuilles de calcul désordonnées.</p>
     <div class="split" style="margin-top:40px">
-      <div class="screenshot screenshot-dark"><img src="crm_patient.png" alt="CRM Patient"></div>
+      <div class="screenshot screenshot-dark" onclick="openLightbox(this)"><img src="crm_patient.png" alt="CRM Patient"></div>
       <div>
-        <div class="card card-dark step-card" style="margin-bottom:15px">
-          <h4 data-translate-key="feature3_card1_title">📊 Vue Tableau de Bord</h4>
-          <p data-translate-key="feature3_card1_text">Visualisez toutes les soumissions en un coup d'œil, triées et organisées sous votre formulaire.</p>
-        </div>
-        <div class="card card-dark step-card" style="margin-bottom:15px">
-          <h4 data-translate-key="feature3_card2_title">🔍 Recherche et Filtres</h4>
-          <p data-translate-key="feature3_card2_text">Retrouvez instantanément une information client grâce à la barre de recherche intelligente.</p>
-        </div>
-        <div class="card card-dark step-card">
-          <h4 data-translate-key="feature3_card3_title">⚡ Actions Rapides (PDF)</h4>
-          <p data-translate-key="feature3_card3_text">Modifiez, supprimez ou téléchargez n'importe quelle soumission en format PDF en un seul clic.</p>
-        </div>
+        <div class="card card-dark step-card" style="margin-bottom:15px"><h4 data-translate-key="feature3_card1_title">📊 Vue Tableau de Bord</h4><p data-translate-key="feature3_card1_text">Visualisez toutes les soumissions en un coup d'œil, triées et organisées sous votre formulaire.</p></div>
+        <div class="card card-dark step-card" style="margin-bottom:15px"><h4 data-translate-key="feature3_card2_title">🔍 Recherche et Filtres</h4><p data-translate-key="feature3_card2_text">Retrouvez instantanément une information client grâce à la barre de recherche intelligente.</p></div>
+        <div class="card card-dark step-card"><h4 data-translate-key="feature3_card3_title">⚡ Actions Rapides (PDF)</h4><p data-translate-key="feature3_card3_text">Modifiez, supprimez ou téléchargez n'importe quelle soumission en format PDF en un seul clic.</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ... (Répéter pour toutes les sections) ... -->
-<!-- J'ai ajouté les data-translate-key pour toutes les sections pour que le script fonctionne -->
+<!-- ==================== 4. QUIZ MODE ==================== -->
+<section class="section-dark">
+  <div class="inner">
+    <div class="split split-reverse">
+      <div>
+        <span class="section-tag section-tag-light" data-translate-key="feature4_tag">Fonctionnalité Clé 4</span>
+        <h2 style="color:#fff" data-translate-key="feature4_title">Mode Quiz avec<br>Notation Automatique</h2>
+        <p class="subtitle subtitle-light" data-translate-key="feature4_subtitle">Créez des quiz, des évaluations ou des tests de connaissances en un clin d'œil, évaluez et engagez votre audience.</p>
+        <div class="card card-dark step-card" style="margin-bottom:15px"><h4 data-translate-key="feature4_card1_title">✅ Correction Automatique</h4><p data-translate-key="feature4_card1_text">Définissez les bonnes réponses et le nombre de points. Le score total est calculé automatiquement.</p></div>
+        <div class="card card-dark step-card" style="margin-bottom:15px"><h4 data-translate-key="feature4_card2_title">⏱️ Timer Anti-Triche</h4><p data-translate-key="feature4_card2_text">Compte à rebours visible, période d'ouverture programmable et limite de tentatives par utilisateur.</p></div>
+        <div class="card card-dark step-card"><h4 data-translate-key="feature4_card3_title">📈 Calcul du Score</h4><p data-translate-key="feature4_card3_text">Les résultats finaux s'affichent instantanément dans votre CRM, vous faisant gagner un temps précieux.</p></div>
+      </div>
+      <div class="screenshot screenshot-dark" onclick="openLightbox(this)"><img src="create_form_booking.png" alt="Configuration Quiz"></div>
+    </div>
+  </div>
+</section>
 
-<!-- ==================== GUIDE DEMARRAGE ==================== -->
+<!-- ==================== 5. USERS & ACCESS ==================== -->
 <section class="section">
-  <div class="inner">
-    <div style="text-align:center">
-      <span class="section-tag" data-translate-key="guide_tag">Tutoriel</span>
-      <h2 style="text-align:center" data-translate-key="guide_title">Guide de Démarrage Rapide</h2>
-      <p class="subtitle" style="text-align:center;margin:0 auto 50px" data-translate-key="guide_subtitle">Votre Premier Formulaire complet et fonctionnel en moins de 5 minutes.</p>
-    </div>
-    <div class="card-grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
-      <div class="card step-card"><div class="step-number">1</div><h4 data-translate-key="guide_step1_title">Connexion</h4><p data-translate-key="guide_step1_text">Connectez-vous à votre espace privé SmartForm Builder avec vos identifiants.</p></div>
-      <div class="card step-card"><div class="step-number">2</div><h4 data-translate-key="guide_step2_title">Nouveau Projet</h4><p data-translate-key="guide_step2_text">Sur le tableau de bord, cliquez simplement sur le bouton "Créer Formulaire".</p></div>
-      <div class="card step-card"><div class="step-number">3</div><h4 data-translate-key="guide_step3_title">Personnalisation</h4><p data-translate-key="guide_step3_text">Donnez un nom, choisissez une icône, vos couleurs, et votre police d'écriture.</p></div>
-      <div class="card step-card"><div class="step-number">4</div><h4 data-translate-key="guide_step4_title">Ajout des Champs</h4><p data-translate-key="guide_step4_text">Cliquez sur "Ajouter Champ", choisissez le type (texte, date, choix...) et configurez la question.</p></div>
-      <div class="card step-card"><div class="step-number">5</div><h4 data-translate-key="guide_step5_title">Modules Avancés</h4><p data-translate-key="guide_step5_text"><em>(Optionnel)</em> Dans les paramètres, activez le Mode Rendez-vous ou le Mode Quiz selon votre besoin.</p></div>
-      <div class="card step-card"><div class="step-number">6</div><h4 data-translate-key="guide_step6_title">Publication</h4><p data-translate-key="guide_step6_text">Cliquez sur "Publier". Partagez votre lien public et regardez les réponses arriver dans votre base de données !</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== DEMO EN LIGNE ==================== -->
-<section class="section-demo">
-  <div class="inner" style="text-align:center">
-    <h2 style="color:#fff;text-align:center;margin-bottom:15px" data-translate-key="demo_title">Prêt à transformer vos interactions ?</h2>
-    <p class="subtitle" style="color:rgba(255,255,255,0.9);text-align:center;margin:0 auto 40px;max-width:700px" data-translate-key="demo_subtitle">SmartForm Builder est bien plus qu'un simple créateur de formulaires. C'est le moteur de votre productivité. Testez notre environnement de démonstration dès aujourd'hui.</p>
-    <a href="https://script.google.com/macros/s/AKfycbw43KnQgbGHIam8MUkTsUZqFYccEB8KfJfvI1kSJHc8TaV18I1RrQr-nQnle-UtzbMx/exec" target="_blank" class="demo-btn" data-translate-key="demo_button">🚀 Essayer la Démo en Ligne</a>
-    <div style="background:rgba(255,255,255,0.15);padding:20px 30px;border-radius:16px;margin-top:30px;display:inline-block;border:1px solid rgba(255,255,255,0.3)">
-      <p style="margin-bottom:8px;color:#fff"><span data-translate-key="demo_user">Identifiant</span> : <code style="background:rgba(0,0,0,0.2);padding:3px 8px;border-radius:4px">demo</code></p>
-      <p style="margin-bottom:0;color:#fff"><span data-translate-key="demo_pass">Mot de passe</span> : <code style="background:rgba(0,0,0,0.2);padding:3px 8px;border-radius:4px">demo2026</code></p>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== CAS D'USAGE ==================== -->
-<section class="section-dark">
-  <div class="inner">
-    <div style="text-align:center">
-      <span class="section-tag section-tag-light" data-translate-key="usecase_tag">Cas d'Usage</span>
-      <h2 style="color:#fff;text-align:center" data-translate-key="usecase_title">Conçu pour Tous les Métiers</h2>
-      <p class="subtitle subtitle-light" style="text-align:center;margin:0 auto 40px" data-translate-key="usecase_subtitle">Découvrez comment SMARTFORM BUILDER s'adapte à votre secteur d'activité.</p>
-    </div>
-    <div class="usecase-grid">
-      <div class="usecase"><div class="usecase-icon">🏥</div><h4 data-translate-key="usecase1_title">Cabinet Médical</h4><p data-translate-key="usecase1_text">Formulaire d'admission patient avec historique, logique conditionnelle et prise de rendez-vous intégrée.</p></div>
-      <div class="usecase"><div class="usecase-icon">🎓</div><h4 data-translate-key="usecase2_title">Examen Éducatif</h4><p data-translate-key="usecase2_text">Quiz avec support mathématique, timer anti-triche, auto-correction instantanée et export des résultats.</p></div>
-      <div class="usecase"><div class="usecase-icon">🏢</div><h4 data-translate-key="usecase3_title">Agence de Services</h4><p data-translate-key="usecase3_text">Système de réservation de créneaux avec validation manuelle, notifications e-mail et synchronisation Google Calendar.</p></div>
-      <div class="usecase"><div class="usecase-icon">⚖️</div><h4 data-translate-key="usecase4_title">Cabinet d'Avocat</h4><p data-translate-key="usecase4_text">Collecte sécurisée des informations client, upload de documents et prise de rendez-vous pour consultation.</p></div>
-      <div class="usecase"><div class="usecase-icon">💪</div><h4 data-translate-key="usecase5_title">Salle de Sport / Coach</h4><p data-translate-key="usecase5_text">Formulaire d'inscription, questionnaire de santé et réservation de séances de coaching personnalisées.</p></div>
-      <div class="usecase"><div class="usecase-icon">💼</div><h4 data-translate-key="usecase6_title">Recrutement RH</h4><p data-translate-key="usecase6_text">Formulaire de candidature avec filtrage automatique, droits d'accès par recruteur et export des profils.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== TARIFS ==================== -->
-<section class="section-dark">
-  <div class="inner">
-    <div style="text-align:center">
-      <span class="section-tag section-tag-light" data-translate-key="pricing_tag">Tarifs & Licences</span>
-      <h2 style="color:#fff;text-align:center" data-translate-key="pricing_title">Choisissez le Plan Adapté à Vos Besoins</h2>
-      <p class="subtitle subtitle-light" style="text-align:center;margin:0 auto 40px" data-translate-key="pricing_subtitle">Une licence à vie. Pas d'abonnement mensuel. Payez une seule fois et utilisez l'application pour toujours.</p>
-    </div>
-    <div class="card-grid" style="grid-template-columns:1fr 1fr; gap:30px; align-items: stretch;">
-      <!-- Carte Standard -->
-      <div class="pricing-card">
-        <h3 data-translate-key="pricing_standard_title">Licence Standard</h3>
-        <div class="price">1500$<span data-translate-key="pricing_onetime"> / Paiement unique</span></div>
-        <p style="color:#94a3b8;" data-translate-key="pricing_standard_subtitle">L'essentiel pour automatiser votre collecte de données.</p>
-        <ul>
-          <li data-translate-key="pricing_standard_feat1">Accès complet à vie</li>
-          <li data-translate-key="pricing_standard_feat2">Toutes les fonctionnalités incluses</li>
-          <li data-translate-key="pricing_standard_feat3">Mises à jour mineures gratuites</li>
-          <li data-translate-key="pricing_standard_feat4">Support par e-mail</li>
-        </ul>
-        <a href="#" class="pricing-btn" data-translate-key="pricing_contact_btn">Nous Contacter</a>
-      </div>
-      <!-- Carte Premium -->
-      <div class="pricing-card premium">
-        <div class="premium-badge" data-translate-key="pricing_premium_badge">Recommandé</div>
-        <h3 data-translate-key="pricing_premium_title">Pack Premium</h3>
-        <div class="price">2000$<span data-translate-key="pricing_onetime"> / Paiement unique</span></div>
-        <p style="color:#e2e8f0;" data-translate-key="pricing_premium_subtitle">La solution clé en main avec un accompagnement personnalisé.</p>
-        <ul>
-          <li data-translate-key="pricing_premium_feat1"><b>Tout ce qui est inclus dans Standard, plus :</b></li>
-          <li data-translate-key="pricing_premium_feat2">Formation complète à l'outil</li>
-          <li data-translate-key="pricing_premium_feat3">Configuration de votre workflow d'entreprise</li>
-          <li data-translate-key="pricing_premium_feat4">Suivi personnalisé pendant 1 mois</li>
-          <li data-translate-key="pricing_premium_feat5">Support prioritaire</li>
-        </ul>
-        <a href="#" class="pricing-btn premium-btn" data-translate-key="pricing_contact_btn">Nous Contacter</a>
+  <div class="split">
+    <div class="screenshot" onclick="openLightbox(this)"><img src="users_access.png" alt="Gestion des Utilisateurs"></div>
+    <div>
+      <span class="section-tag" data-translate-key="feature5_tag">Fonctionnalité Clé 5</span>
+      <h2 data-translate-key="feature5_title">Gestion d'Équipe et<br>Droits "À la Carte"</h2>
+      <p class="subtitle" data-translate-key="feature5_subtitle">Collaborez en toute sécurité. Créez des comptes pour vos collaborateurs et décidez précisément de ce qu'ils peuvent voir ou faire.</p>
+      <div class="card-grid" style="grid-template-columns:1fr">
+        <div class="card step-card"><h4 data-translate-key="feature5_card1_title">👤 Rôles Personnalisés</h4><p data-translate-key="feature5_card1_text">Donnez un accès restreint à un seul formulaire, ou un accès global à tous vos projets selon l'employé.</p></div>
+        <div class="card step-card"><h4 data-translate-key="feature5_card2_title">🔐 Permissions Granulaires</h4><p data-translate-key="feature5_card2_text">Décidez si un utilisateur peut simplement voir les données (Lecture), les modifier, ou même les supprimer.</p></div>
+        <div class="card step-card"><h4 data-translate-key="feature5_card3_title">🧪 Mode Démo Sécurisé</h4><p data-translate-key="feature5_card3_text">Créez un compte "Test" pour vos propres clients, leur permettant de découvrir la puissance de l'outil sans jamais toucher à vos paramètres ou données sensibles.</p></div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ==================== 6. SETTINGS (WHITE LABEL) ==================== -->
+<section class="section-light">
+  <div class="inner">
+    <div class="split split-reverse">
+      <div>
+        <span class="section-tag" data-translate-key="feature6_tag">Fonctionnalité Clé 6</span>
+        <h2 data-translate-key="feature6_title">Marque Blanche : L'Appli<br>devient VOTRE Appli</h2>
+        <p class="subtitle" data-translate-key="feature6_subtitle">Faites de SmartForm Builder votre propre outil. En quelques clics, personnalisez l'interface pour qu'elle corresponde parfaitement à l'identité de votre entreprise.</p>
+        <div class="card step-card" style="margin-bottom:15px"><h4 data-translate-key="feature6_card1_title">🎨 Votre Logo, Vos Couleurs</h4><p data-translate-key="feature6_card1_text">Changez le logo principal, l'icône, les couleurs des boutons, la police et le fond d'écran. Personnalisation visuelle totale.</p></div>
+        <div class="card step-card"><h4 data-translate-key="feature6_card2_title">🌍 Multilingue & RTL</h4><p data-translate-key="feature6_card2_text">L'interface s'adapte automatiquement à la langue de votre choix pour une expérience utilisateur sans friction :<br><strong>Français, Anglais, Espagnol, Allemand, Arabe (Support RTL intégré), Hébreu.</strong></p></div>
+      </div>
+      <div class="screenshot" onclick="openLightbox(this)"><img src="settings.png" alt="Paramètres Marque Blanche"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ... (Le reste du code HTML avec les traductions) ... -->
 
 <!-- ==================== FOOTER ==================== -->
 <footer class="footer">
@@ -366,45 +317,95 @@ body.rtl .pricing-card li::before { margin-right: 0; margin-left: 10px; }
   <p><strong>SMARTFORM BUILDER</strong></p>
   <p style="margin-top:8px" data-translate-key="footer_rights">© 2026 Tous droits réservés</p>
   <div class="language-switcher">
-    <a href="#" onclick="changeLanguage('fr')" class="lang-link active" data-lang="fr">Français</a>
-    <a href="#" onclick="changeLanguage('en')" class="lang-link" data-lang="en">English</a>
-    <a href="#" onclick="changeLanguage('ar')" class="lang-link" data-lang="ar">العربية</a>
+    <a href="#" onclick="changeLanguage('fr'); return false;" class="lang-link active" data-lang="fr">Français</a>
+    <a href="#" onclick="changeLanguage('en'); return false;" class="lang-link" data-lang="en">English</a>
+    <a href="#" onclick="changeLanguage('ar'); return false;" class="lang-link" data-lang="ar">العربية</a>
   </div>
 </footer>
 
-<!-- ===== SCRIPT DE TRADUCTION ===== -->
+<!-- ===== LIGHTBOX SCRIPT & SCRIPT DE TRADUCTION ===== -->
 <script>
+// --- Script du Lightbox ---
+function openLightbox(el){
+  const img=el.querySelector('img');
+  document.getElementById('lightbox-img').src=img.src;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape')closeLightbox();
+});
+
+// --- Script de Traduction ---
 const translations = {
-  // FRANÇAIS (par défaut dans le HTML)
   fr: {
-    /* Les textes sont déjà en français dans le HTML, pas besoin de les répéter ici sauf si on veut une structure complète */
+    /* Laissé vide car le HTML est la source par défaut */
   },
-  // ANGLAIS
   en: {
     hero_badge: "INTELLIGENT DATA COLLECTION",
     hero_title: "Welcome to<br><span>SMARTFORM BUILDER</span>",
     hero_p1: "Forget boring forms and manual processes. Transform how you interact with your clients, patients, or teams.",
-    hero_p2: "Our platform is designed to be both incredibly powerful under the hood and astonishingly simple to use. Whether you're a sports coach, a medical clinic, a trainer, or a business, the tool adapts to you.",
+    hero_p2: "Our platform is designed to be both incredibly powerful and astonishingly simple. Whether you're a sports coach, a medical clinic, or a business, the tool adapts to you.",
     hero_quote: "\"Create forms that work for you, not the other way around.\"",
     feature1_tag: "Key Feature 1",
     feature1_title: "Visual and Intuitive<br>Builder",
-    feature1_subtitle: "Create beautiful and smart forms in just a few clicks. Our visual interface lets you build questionnaires without writing a single line of code, thanks to drag-and-drop.",
-    // ... (ajouter toutes les traductions anglaises ici)
-    usecase_tag: "Use Cases",
-    usecase_title: "Designed for All Professions",
-    usecase_subtitle: "Discover how SMARTFORM BUILDER adapts to your industry.",
-    usecase1_title: "Medical Office",
-    usecase1_text: "Patient admission form with medical history, conditional logic, and integrated appointment booking.",
-    usecase2_title: "Educational Exam",
-    usecase2_text: "Quiz with mathematical support, anti-cheat timer, instant auto-grading, and results export.",
-    usecase3_title: "Service Agency",
-    usecase3_text: "Slot booking system with manual approval, email notifications, and Google Calendar synchronization.",
-    usecase4_title: "Law Firm",
-    usecase4_text: "Secure client information collection, document uploads, and appointment booking for consultations.",
-    usecase5_title: "Gym / Coach",
-    usecase5_text: "Registration form, health questionnaire, and personalized coaching session booking.",
-    usecase6_title: "HR Recruitment",
-    usecase6_text: "Application form with automatic filtering, recruiter-specific access rights, and profile export.",
+    feature1_subtitle: "Create beautiful, smart forms in clicks. Our visual interface lets you build questionnaires with drag-and-drop, no code required.",
+    feature1_card1_title: "🔘 Various Fields",
+    feature1_card1_text: "Short text, long text, numbers, dates, dropdown lists, multiple choice, checkboxes.",
+    feature1_card2_title: "🧠 Conditional Logic",
+    feature1_card2_text: "Show or hide questions based on previous answers. Make your forms shorter and more relevant.",
+    feature1_card3_title: "📐 Mathematical Support",
+    feature1_card3_text: "Integrate complex formulas directly into your questions with KaTeX support. Perfect for technical quizzes.",
+    feature2_tag: "Key Feature 2",
+    feature2_title: "Integrated Appointment<br>Booking Module",
+    feature2_subtitle: "Turn any form into a powerful appointment booking system. No more back-and-forth emails to find a time slot!",
+    feature2_card1_title: "📅 Smart Calendar",
+    feature2_card1_text: "Clients only see available slots based on your schedule, breaks, and max capacity.",
+    feature2_card2_title: "🔄 Google Calendar Sync",
+    feature2_card2_text: "Each confirmed appointment is automatically added to your Google Calendar. No more double bookings!",
+    feature2_card3_title: "✅ Manual Approval",
+    feature2_card3_text: "Automatically accept appointments or approve them manually to maintain full control.",
+    feature2_card4_title: "📧 Automated Notifications",
+    feature2_card4_text: "Send fully customized confirmation, cancellation, or modification emails.",
+    feature3_tag: "Key Feature 3",
+    feature3_title: "Integrated CRM: Your<br>Centralized Database",
+    feature3_subtitle: "Every form response is automatically saved into a powerful CRM. Say goodbye to messy spreadsheets.",
+    feature3_card1_title: "📊 Dashboard View",
+    feature3_card1_text: "View all submissions at a glance, sorted and organized right under your form.",
+    feature3_card2_title: "🔍 Search and Filters",
+    feature3_card2_text: "Instantly find any client information with the smart search bar.",
+    feature3_card3_title: "⚡ Quick Actions (PDF)",
+    feature3_card3_text: "Edit, delete, or download any submission as a PDF with a single click.",
+    feature4_tag: "Key Feature 4",
+    feature4_title: "Quiz Mode with<br>Auto-Grading",
+    feature4_subtitle: "Create quizzes, assessments, or knowledge tests in a snap. Evaluate and engage your audience.",
+    feature4_card1_title: "✅ Automatic Correction",
+    feature4_card1_text: "Set the correct answers and points. The total score is calculated automatically.",
+    feature4_card2_title: "⏱️ Anti-Cheat Timer",
+    feature4_card2_text: "Visible countdown, programmable opening period, and attempt limits per user.",
+    feature4_card3_title: "📈 Score Calculation",
+    feature4_card3_text: "Final results are displayed instantly in your CRM, saving you valuable time.",
+    feature5_tag: "Key Feature 5",
+    feature5_title: "Team Management &<br>Custom Permissions",
+    feature5_subtitle: "Collaborate securely. Create accounts for your colleagues and decide exactly what they can see or do.",
+    feature5_card1_title: "👤 Custom Roles",
+    feature5_card1_text: "Grant restricted access to a single form or global access to all your projects depending on the employee.",
+    feature5_card2_title: "🔐 Granular Permissions",
+    feature5_card2_text: "Decide if a user can simply view data (Read), modify it, or even delete it.",
+    feature5_card3_title: "🧪 Secure Demo Mode",
+    feature5_card3_text: "Create a 'Test' account for your own clients, allowing them to discover the tool's power without touching your sensitive data.",
+    feature6_tag: "Key Feature 6",
+    feature6_title: "White-Label: The App<br>becomes YOUR App",
+    feature6_subtitle: "Make SmartForm Builder your own tool. In just a few clicks, customize the interface to perfectly match your company's identity.",
+    feature6_card1_title: "🎨 Your Logo, Your Colors",
+    feature6_card1_text: "Change the main logo, icon, button colors, font, and background. Total visual customization.",
+    feature6_card2_title: "🌍 Multilingual & RTL",
+    feature6_card2_text: "The interface automatically adapts to your chosen language for a frictionless user experience:<br><strong>French, English, Spanish, German, Arabic (RTL support), Hebrew.</strong>",
+    // ... Le reste des traductions EN ...
     pricing_tag: "Pricing & Licenses",
     pricing_title: "Choose the Plan That Fits Your Needs",
     pricing_subtitle: "A lifetime license. No monthly subscription. Pay once and use the application forever.",
@@ -426,29 +427,16 @@ const translations = {
     pricing_premium_feat5: "Priority support",
     footer_rights: "© 2026 All rights reserved"
   },
-  // ARABE
   ar: {
     hero_badge: "جمع بيانات ذكي",
     hero_title: "مرحباً بكم في<br><span>SMARTFORM BUILDER</span>",
     hero_p1: "انسوا النماذج المملة والعمليات اليدوية. غيروا طريقة تفاعلكم مع عملائكم، مرضاكم، أو فرقكم.",
-    hero_p2: "صُممت منصتنا لتكون قوية بشكل لا يصدق وسهلة الاستخدام بشكل مدهش. سواء كنتم مدربين رياضيين، عيادة طبية، أو شركة، الأداة تتكيف معكم.",
+    hero_p2: "صُممت منصتنا لتكون قوية بشكل لا يصدق وسهلة الاستخدام. سواء كنتم مدربين رياضيين، عيادة طبية، أو شركة، الأداة تتكيف معكم.",
     hero_quote: "\"أنشئوا نماذج تعمل لأجلكم، وليس العكس.\"",
-    // ... (ajouter toutes les traductions arabes ici)
-    usecase_tag: "حالات الاستخدام",
-    usecase_title: "مصمم لجميع المهن",
-    usecase_subtitle: "اكتشفوا كيف يتكيف SMARTFORM BUILDER مع قطاع أعمالكم.",
-    usecase1_title: "عيادة طبية",
-    usecase1_text: "نموذج قبول المرضى مع السجل الطبي، المنطق الشرطي، وحجز المواعيد المدمج.",
-    usecase2_title: "امتحان تعليمي",
-    usecase2_text: "اختبار مع دعم للمعادلات الرياضية، مؤقت لمنع الغش، تصحيح تلقائي فوري، وتصدير للنتائج.",
-    usecase3_title: "وكالة خدمات",
-    usecase3_text: "نظام حجز مواعيد مع موافقة يدوية، إشعارات عبر البريد الإلكتروني، ومزامنة مع تقويم جوجل.",
-    usecase4_title: "مكتب محاماة",
-    usecase4_text: "جمع آمن لمعلومات العملاء، رفع المستندات، وحجز مواعيد للاستشارات القانونية.",
-    usecase5_title: "صالة رياضية / مدرب",
-    usecase5_text: "نموذج تسجيل، استبيان صحي، وحجز جلسات تدريب شخصية.",
-    usecase6_title: "توظيف الموارد البشرية",
-    usecase6_text: "نموذج تقديم طلبات مع فلترة تلقائية، صلاحيات وصول مخصصة، وتصدير لملفات المرشحين.",
+    feature1_tag: "الميزة الرئيسية 1",
+    feature1_title: "منشئ نماذج مرئي<br>وبديهي",
+    feature1_subtitle: "أنشئ نماذج جميلة وذكية ببضع نقرات. تتيح لك واجهتنا المرئية بناء استبيانات دون كتابة سطر واحد من التعليمات البرمجية بفضل السحب والإفلات.",
+    // ... Le reste des traductions AR ...
     pricing_tag: "الأسعار والتراخيص",
     pricing_title: "اختر الخطة التي تناسب احتياجاتك",
     pricing_subtitle: "رخصة مدى الحياة. لا يوجد اشتراك شهري. ادفع مرة واحدة واستخدم التطبيق إلى الأبد.",
@@ -458,7 +446,7 @@ const translations = {
     pricing_standard_feat1: "وصول كامل مدى الحياة",
     pricing_standard_feat2: "جميع الميزات متضمنة",
     pricing_standard_feat3: "تحديثات ثانوية مجانية",
-    pricing_standard_feat4: "دعم عبر البريد الإلكتر الإلكتروني",
+    pricing_standard_feat4: "دعم عبر البريد الإلكتروني",
     pricing_contact_btn: "اتصل بنا",
     pricing_premium_badge: "موصى به",
     pricing_premium_title: "الباقة المميزة",
@@ -472,11 +460,16 @@ const translations = {
   }
 };
 
-// J'ai complété les traductions pour les sections clés (Use Cases, Pricing, Footer, Hero).
-// Si des textes manquent, il suffira de les ajouter dans les objets 'en' et 'ar' en suivant la même structure.
+// --- Fonction de Traduction ---
+const originalTexts = {};
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-translate-key]').forEach(element => {
+    originalTexts[element.getAttribute('data-translate-key')] = element.innerHTML;
+  });
+  changeLanguage('fr');
+});
 
 function changeLanguage(lang) {
-  // Gérer le style RTL pour l'arabe
   if (lang === 'ar') {
     document.body.classList.add('rtl');
     document.documentElement.lang = 'ar';
@@ -485,38 +478,24 @@ function changeLanguage(lang) {
     document.documentElement.lang = lang;
   }
   
-  // Gérer le bouton actif
   document.querySelectorAll('.lang-link').forEach(link => {
     link.classList.remove('active');
-    if (link.getAttribute('data-lang') === lang) {
-      link.classList.add('active');
-    }
+    if (link.getAttribute('data-lang') === lang) link.classList.add('active');
   });
 
-  // Traduire tous les éléments
-  const langData = translations[lang];
-  if (!langData) return; // Si la langue n'existe pas, ne rien faire
+  const langData = translations[lang] || {};
   
   document.querySelectorAll('[data-translate-key]').forEach(element => {
     const key = element.getAttribute('data-translate-key');
-    if (langData[key]) {
-      element.innerHTML = langData[key];
+    let text = langData[key];
+    if (!text && lang === 'fr') { // Si c'est en français et la clé n'existe pas, on prend le texte d'origine
+        text = originalTexts[key];
     }
-    // Note: Pour le français, si une clé n'est pas dans l'objet 'fr', il gardera le texte HTML par défaut.
+    if (text) {
+      element.innerHTML = text;
+    }
   });
 }
-
-// Initialiser avec la langue par défaut (français)
-document.addEventListener('DOMContentLoaded', () => {
-  // Optionnel: Détecter la langue du navigateur
-  // const userLang = navigator.language.split('-')[0];
-  // if (translations[userLang]) changeLanguage(userLang);
-  // else changeLanguage('fr');
-  
-  // Pour l'instant, on met français par défaut
-  changeLanguage('fr');
-});
-
 </script>
 </body>
 </html>
