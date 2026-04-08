@@ -3,223 +3,269 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SMARTFORM BUILDER - La Plateforme Tout-en-Un</title>
+<title>SMARTFORM BUILDER - Transformez vos Données</title>
 
-<!-- CORRECTION 1 : Vrais liens pour les polices d'écriture -->
+<!-- Polices Google -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Icônes Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <style>
+/* Reset et Base */
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;color:#1e293b;background:#fff;overflow-x:hidden; transition: all 0.2s ease-in-out;}
+body{font-family:'Inter',sans-serif;color:#1e293b;background:#f8fafc;overflow-x:hidden;}
+html{scroll-behavior:smooth;}
 
-/* =================================== */
-/* ===== STYLES POUR L'ARABE (RTL) ===== */
-/* =================================== */
-body.rtl {
-  direction: rtl;
-  font-family: 'Tajawal', sans-serif;
-}
-/* Inversion des sections split */
-body.rtl .split {
-  direction: rtl; /* Force la grille à lire de droite à gauche */
-}
-body.rtl .split > * {
-  direction: rtl; /* Assure que le contenu interne suit aussi */
-}
-body.rtl .split-reverse {
-  direction: ltr; /* Fait l'inverse pour les sections déjà inversées */
-}
-body.rtl .split-reverse > * {
-  direction: rtl; /* Mais le texte à l'intérieur reste de droite à gauche */
-}
-body.rtl .quote-box { border-left: none; border-right: 4px solid #34d399; border-radius: 12px 0 0 12px;}
-body.rtl .language-switcher a { margin: 0 0 0 15px; }
-body.rtl .step-number {right: auto; left: 10px;}
-body.rtl .pricing-card ul { text-align: right; }
-body.rtl .pricing-card li::before { margin-right: 0; margin-left: 10px; }
-body.rtl .premium-badge { transform: translateX(50%);}
+/* Couleurs et Typographie */
+:root { --primary: #10b981; --dark: #0f172a; --gray: #64748b; }
+h1, h2, h3 { font-weight: 800; letter-spacing: -0.03em; color: var(--dark); line-height: 1.2; }
 
+/* BOUTONS FLOTTANTS (Barre d'actions) */
+.floating-actions { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 1000; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 12px 20px; border-radius: 50px; display: flex; gap: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+.floating-btn { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #fff; padding: 10px 20px; border-radius: 50px; font-size: 0.95rem; font-weight: 600; text-decoration: none; transition: 0.3s; border: 1px solid rgba(255,255,255,0.2); }
+.floating-btn.btn-demo { background: var(--primary); border-color: var(--primary); }
+.floating-btn:hover { background: rgba(255,255,255,0.1); }
+.floating-btn.btn-demo:hover { background: #059669; }
 
-/* ===== HERO ===== */
-.hero{min-height:100vh;background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%);display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;position:relative;overflow:hidden;padding:60px 20px;}
-.hero-content{position:relative;z-index:1;max-width:900px}
-.hero h1{font-size:4.5rem;font-weight:900;letter-spacing:-0.04em;line-height:1.1;margin-bottom:24px}
-.hero h1 span{background:linear-gradient(135deg,#818cf8,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{font-size:1.25rem;color:#94a3b8;max-width:750px;margin:0 auto 20px;line-height:1.6}
-.quote-box{background:rgba(255,255,255,0.05);border-left:4px solid #34d399;padding:20px 30px;margin:30px auto;max-width:600px;font-style:italic;font-size:1.3rem;color:#e2e8f0;border-radius:0 12px 12px 0}
+/* Section Hero */
+.hero { background: var(--dark); text-align: center; padding: 60px 20px 0 20px; color: white; }
+.hero h1 { color: white; font-size: 4rem; margin-bottom: 20px; }
+.hero h1 span { color: var(--primary); }
+.hero p { font-size: 1.3rem; color: #94a3b8; max-width: 800px; margin: 0 auto 40px; }
+.hero-image-container { max-width: 1200px; margin: 0 auto; position: relative; margin-top: 50px; }
+.hero-image-container img { width: 100%; border-radius: 20px 20px 0 0; box-shadow: 0 -20px 50px rgba(16, 185, 129, 0.15); display: block; }
 
-/* ===== SECTIONS ===== */
-.section{padding:100px 40px;max-width:1200px;margin:0 auto;}
-.section-dark{background:#0f172a;color:#fff;max-width:100%;padding:100px 40px;}
-.section-dark .inner{max-width:1200px;margin:0 auto}
-.section-accent{background:#0f172a;color:#fff;max-width:100%;padding:100px 40px;}
-.section-accent .inner{max-width:1200px;margin:0 auto}
-.section-light{background:#f8fafc;max-width:100%;padding:100px 40px;}
-.section-light .inner{max-width:1200px;margin:0 auto}
-.section-demo{background:linear-gradient(135deg,#059669,#10b981);color:#fff;max-width:100%;padding:100px 40px;}
-.section-demo .inner{max-width:1200px;margin:0 auto}
-.section-tag{display:inline-block;background:#eef2ff;color:#6366f1;padding:6px 18px;border-radius:999px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:20px;}
-.section-tag-light{background:rgba(255,255,255,0.15);color:#fff}
-h2{font-size:2.8rem;font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:20px}
-.subtitle{font-size:1.15rem;color:#64748b;max-width:700px;margin-bottom:40px;line-height:1.7}
-.subtitle-light{color:#94a3b8}
+/* Section Showcases */
+.showcase-wrapper { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
+.showcase-row { display: flex; align-items: center; gap: 60px; margin-bottom: 120px; }
+.showcase-row:nth-child(even) { flex-direction: row-reverse; }
+.showcase-text { flex: 1; }
+.showcase-tag { display: inline-block; background: #eef2ff; color: #4f46e5; padding: 6px 16px; border-radius: 50px; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 20px; }
+.showcase-text h2 { font-size: 3rem; margin-bottom: 20px; }
+.showcase-text p { font-size: 1.15rem; color: var(--gray); margin-bottom: 30px; line-height: 1.7; }
+.showcase-list { list-style: none; }
+.showcase-list li { font-size: 1.1rem; font-weight: 600; margin-bottom: 15px; display: flex; align-items: center; gap: 12px; }
+.showcase-list li::before { content: '✅'; font-size: 1.3rem; }
+.showcase-img { flex: 1.2; }
+.showcase-img img { width: 100%; border-radius: 24px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
 
-/* ===== LAYOUT & CARDS ===== */
-.split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.screenshot{border-radius:20px;overflow:hidden;box-shadow:0 25px 50px -12px rgba(0,0,0,0.25);border:1px solid rgba(0,0,0,0.08);transition:transform 0.4s ease;cursor:pointer;position:relative;}
-.screenshot:hover{transform:scale(1.03)}
-.screenshot-dark{box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.1)}
-.screenshot::after{content:'🔍 Cliquez pour agrandir';position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:#fff;text-align:center;padding:20px 10px 12px;font-size:0.85rem;font-weight:500;opacity:0;transition:opacity 0.3s ease;}
-body.rtl .screenshot::after { content: '🔍 انقر للتكبير'; }
-.screenshot:hover::after{opacity:1}
-.screenshot img {width: 100%; display: block;}
-.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:30px}
-.card{background:#fff;padding:32px;border-radius:20px;border:1px solid #e2e8f0;transition:all 0.3s ease;}
-.card h4{font-size:1.15rem;font-weight:700;margin-bottom:10px;color:#0f172a}
-.card p{color:#64748b;line-height:1.7;font-size:0.95rem}
-.card-dark{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1)}
-.card-dark h4{color:#fff}
-.card-dark p{color:#94a3b8}
-.step-card{position:relative;z-index:1;overflow:hidden;padding:24px}
-.step-number{position:absolute;top:-10px;right:10px;font-size:6rem;font-weight:900;color:rgba(99,102,241,0.08);z-index:-1;line-height:1;}
-.usecase-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:24px;margin-top:40px}
-.usecase{background:rgba(255,255,255,0.08);padding:35px;border-radius:20px;border:1px solid rgba(255,255,255,0.1);text-align:center;}
-.usecase-icon{font-size:3rem;margin-bottom:16px}
-.usecase h4{color:#fff;font-size:1.15rem;margin-bottom:10px}
-.usecase p{color:#94a3b8;font-size:0.9rem;line-height:1.6}
+/* FORMULAIRE DE CONTACT */
+.contact-section { background: #eef2ff; padding: 100px 40px; }
+.contact-container { max-width: 800px; margin: 0 auto; background: white; padding: 50px; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); text-align: center; }
+.contact-container h2 { font-size: 2.5rem; margin-bottom: 15px; }
+.contact-container p { color: var(--gray); margin-bottom: 30px; }
+.contact-form .form-group { margin-bottom: 20px; text-align: left; }
+.contact-form label { font-weight: 600; display: block; margin-bottom: 8px; }
+.contact-form input, .contact-form textarea { width: 100%; padding: 15px; border: 1px solid #d1d5db; border-radius: 12px; font-size: 1rem; font-family: 'Inter', sans-serif; }
+.contact-form button { display: inline-flex; align-items: center; gap: 10px; background: var(--dark); color: #fff; padding: 16px 32px; border-radius: 50px; font-size: 1.1rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: 0.3s; }
+.contact-form button:hover { background: #1e293b; }
 
-/* ===== LIGHTBOX ===== */
-.lightbox-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.92);z-index:9999;justify-content:center;align-items:center;cursor:zoom-out;padding:40px;}
-.lightbox-overlay.active{display:flex}
-.lightbox-overlay img{max-width:95%;max-height:90vh;border-radius:16px;box-shadow:0 25px 50px rgba(0,0,0,0.5);object-fit:contain;}
-.lightbox-close{position:fixed;top:20px;right:30px;color:#fff;font-size:2.5rem;cursor:pointer;z-index:10000;background:rgba(255,255,255,0.1);width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background 0.3s;}
-.lightbox-close:hover{background:rgba(255,255,255,0.25)}
+/* Footer */
+footer { background: var(--dark); color: #94a3b8; padding: 50px 20px; text-align: center; }
 
-/* ===== SECTION TARIFS ===== */
-.pricing-card {background: rgba(255,255,255,0.05);border: 1px solid rgba(255,255,255,0.1);border-radius: 20px; padding: 40px; text-align: center;display: flex; flex-direction: column;}
-.pricing-card.premium {border: 2px solid #34d399;position: relative;box-shadow: 0 0 30px rgba(52, 211, 153, 0.2);}
-.premium-badge {position: absolute; top: -15px; left: 50%; transform: translateX(-50%);background: #34d399; color: #0f172a; font-weight: 700; font-size: 0.8rem;padding: 6px 16px; border-radius: 999px; text-transform: uppercase;}
-.pricing-card h3 { font-size: 1.5rem; color: #fff; }
-.pricing-card .price { font-size: 3.5rem; font-weight: 800; color: #fff; margin: 15px 0;}
-.pricing-card .price span { font-size: 1rem; font-weight: 500; color: #94a3b8; }
-.pricing-card ul { list-style: none; padding: 0; margin: 20px 0; text-align: left; flex-grow: 1;}
-.pricing-card li { margin-bottom: 12px; color: #94a3b8; display:flex; align-items:center; gap:10px; }
-.pricing-card li::before { content: '✅'; color: #34d399; margin-right: 10px; }
-.pricing-btn {display: inline-block; background: #6366f1; color: #fff; text-decoration: none;padding: 15px 30px; border-radius: 12px; font-weight: 600; margin-top: 20px;transition: background 0.3s;}
-.pricing-btn:hover { background: #4f46e5; }
-.pricing-btn.premium-btn { background: #34d399; color: #0f172a;}
-.pricing-btn.premium-btn:hover { background: #10b981; }
-
-/* ===== DEMO BUTTON & FOOTER ===== */
-.demo-btn{display:inline-flex;align-items:center;gap:12px;background:#fff;color:#059669;padding:18px 40px;border-radius:16px;font-size:1.2rem;font-weight:700;text-decoration:none;transition:all 0.3s;box-shadow:0 10px 25px rgba(0,0,0,0.15);}
-.demo-btn:hover{transform:translateY(-4px);box-shadow:0 15px 35px rgba(0,0,0,0.25)}
-.footer{background:#0f172a;color:#94a3b8;text-align:center;padding:60px 40px;font-size:0.9rem;}
-.language-switcher { margin-top: 25px; }
-.language-switcher a {color: #94a3b8; text-decoration: none; font-weight: 600;margin: 0 15px; padding: 5px 10px; border-radius: 6px;transition: all 0.3s;}
-.language-switcher a:hover { background: rgba(255,255,255,0.1); color: #fff; }
-.language-switcher a.active { background: #6366f1; color: #fff; }
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:900px){
-  .split, body.rtl .split-reverse {grid-template-columns:1fr; direction:ltr;} /* Correction pour mobile */
-  body.rtl .split { direction: ltr;}
-  .hero h1{font-size:2.5rem}
-  h2{font-size:2rem}
-  .section{padding:60px 20px}
+/* Responsive */
+@media(max-width: 900px) {
+  .floating-actions { padding: 8px; gap: 5px; }
+  .floating-btn { padding: 8px 15px; font-size: 0.8rem; }
+  .hero h1 { font-size: 2.5rem; }
+  .showcase-row, .showcase-row:nth-child(even) { flex-direction: column; gap: 30px; }
+  .showcase-text h2 { font-size: 2rem; }
+  .contact-section { padding: 60px 20px; }
+  .contact-container { padding: 30px 20px; }
 }
 </style>
 </head>
 <body>
 
-<!-- Le contenu HTML complet avec les data-translate-key -->
-<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()"><div class="lightbox-close" onclick="closeLightbox()">✕</div><img id="lightbox-img" src="" alt="Aperçu agrandi"></div>
-<section class="hero"><div class="hero-content"><div data-translate-key="hero_badge">COLLECTE DE DONNÉES INTELLIGENTE</div><h1 data-translate-key="hero_title">Bienvenue dans<br><span>SMARTFORM BUILDER</span></h1><p data-translate-key="hero_p1">Oubliez les formulaires ennuyeux et les processus manuels. Transformez la façon dont vous interagissez avec vos clients, vos patients ou vos équipes.</p><p data-translate-key="hero_p2">Notre plateforme a été conçue pour être à la fois incroyablement puissante sous le capot et d'une simplicité déconcertante à utiliser. Que vous soyez un coach sportif, une clinique médicale, un formateur ou une entreprise, l'outil s'adapte à vous.</p><div class="quote-box"><span data-translate-key="hero_quote">"Créez des formulaires qui travaillent pour vous, pas l'inverse."</span></div></div></section>
-<section class="section-light"><div class="inner"><div class="split split-reverse"><div><span class="section-tag" data-translate-key="feature1_tag">Fonctionnalité Clé 1</span><h2 data-translate-key="feature1_title">Constructeur Visuel<br>et Intuitif</h2><p class="subtitle" data-translate-key="feature1_subtitle">Créez des formulaires magnifiques et intelligents en quelques clics. Notre interface visuelle vous permet de construire des questionnaires sans écrire une seule ligne de code grâce au glisser-déposer.</p><div class="card-grid" style="grid-template-columns:1fr;margin-top:0"><div class="card step-card"><h4 data-translate-key="feature1_card1_title">🔘 Champs Variés</h4><p data-translate-key="feature1_card1_text">Texte court, texte long, nombres, dates, listes déroulantes, choix multiples, cases à cocher.</p></div><div class="card step-card"><h4 data-translate-key="feature1_card2_title">🧠 Logique Conditionnelle</h4><p data-translate-key="feature1_card2_text">Affichez ou masquez des questions en fonction des réponses précédentes. Rendez vos formulaires plus courts et plus pertinents.</p></div><div class="card step-card"><h4 data-translate-key="feature1_card3_title">📐 Support Mathématique</h4><p data-translate-key="feature1_card3_text">Intégrez des formules complexes directement dans vos questions grâce au support de KaTeX. Parfait pour les quiz techniques.</p></div></div></div><div class="screenshot" onclick="openLightbox(this)"><img src="create_form_fields.png" alt="Constructeur Visuel"></div></div></div></section>
-<section class="section"><div class="inner"><div class="split"><div><span class="section-tag" data-translate-key="feature2_tag">Fonctionnalité Clé 2</span><h2 data-translate-key="feature2_title">Module de Rendez-vous<br>Intégré</h2><p class="subtitle" data-translate-key="feature2_subtitle">Transformez n'importe quel formulaire en un puissant système de prise de rendez-vous. Fini les allers-retours par email pour trouver un créneau !</p><div class="card-grid" style="grid-template-columns:1fr 1fr"><div class="card"><h4 data-translate-key="feature2_card1_title">📅 Calendrier Intelligent</h4><p data-translate-key="feature2_card1_text">Le client voit uniquement les créneaux disponibles selon vos horaires, vos pauses et la capacité max.</p></div><div class="card"><h4 data-translate-key="feature2_card2_title">🔄 Sync Google Agenda</h4><p data-translate-key="feature2_card2_text">Chaque rendez-vous confirmé est automatiquement ajouté à votre Google Agenda. Plus de doublons !</p></div><div class="card"><h4 data-translate-key="feature2_card3_title">✅ Validation Manuelle</h4><p data-translate-key="feature2_card3_text">Acceptez automatiquement ou approuvez manuellement chaque RDV pour garder le contrôle.</p></div><div class="card"><h4 data-translate-key="feature2_card4_title">📧 Notifications Automatisées</h4><p data-translate-key="feature2_card4_text">Envoyez des emails de confirmation, d'annulation ou de modification entièrement personnalisés.</p></div></div></div><div class="screenshot" onclick="openLightbox(this)"><img src="crm_rdv.png" alt="Module de Rendez-vous"></div></div></div></section>
-<section class="section-accent"><div class="inner"><div class="split split-reverse"><div><span class="section-tag section-tag-light" data-translate-key="feature3_tag">Fonctionnalité Clé 3</span><h2 data-translate-key="feature3_title">CRM Intégré : Votre Base<br>de Données Centralisée</h2><p class="subtitle" style="color:#a5b4fc" data-translate-key="feature3_subtitle">Chaque réponse est automatiquement sauvegardée dans un CRM puissant. Dites adieu aux feuilles de calcul désordonnées.</p><div class="card-grid" style="grid-template-columns:1fr;margin-top:0"><div class="card card-dark step-card"><h4 data-translate-key="feature3_card1_title">📊 Vue Tableau de Bord</h4><p data-translate-key="feature3_card1_text">Visualisez toutes les soumissions en un coup d'œil, triées et organisées sous votre formulaire.</p></div><div class="card card-dark step-card"><h4 data-translate-key="feature3_card2_title">🔍 Recherche et Filtres</h4><p data-translate-key="feature3_card2_text">Retrouvez instantanément une information client grâce à la barre de recherche intelligente.</p></div><div class="card card-dark step-card"><h4 data-translate-key="feature3_card3_title">⚡ Actions Rapides (PDF)</h4><p data-translate-key="feature3_card3_text">Modifiez, supprimez ou téléchargez n'importe quelle soumission en format PDF en un seul clic.</p></div></div></div><div class="screenshot screenshot-dark" onclick="openLightbox(this)"><img src="crm_patient.png" alt="CRM Patient"></div></div></div></section>
-<section class="section-dark"><div class="inner"><div class="split"><div><span class="section-tag section-tag-light" data-translate-key="feature4_tag">Fonctionnalité Clé 4</span><h2 style="color:#fff" data-translate-key="feature4_title">Mode Quiz avec<br>Notation Automatique</h2><p class="subtitle subtitle-light" data-translate-key="feature4_subtitle">Créez des quiz, des évaluations ou des tests de connaissances en un clin d'œil, évaluez et engagez votre audience.</p><div class="card-grid" style="grid-template-columns:1fr;margin-top:0"><div class="card card-dark step-card"><h4 data-translate-key="feature4_card1_title">✅ Correction Automatique</h4><p data-translate-key="feature4_card1_text">Définissez les bonnes réponses et le nombre de points. Le score total est calculé automatiquement.</p></div><div class="card card-dark step-card"><h4 data-translate-key="feature4_card2_title">⏱️ Timer Anti-Triche</h4><p data-translate-key="feature4_card2_text">Compte à rebours visible, période d'ouverture programmable et limite de tentatives par utilisateur.</p></div><div class="card card-dark step-card"><h4 data-translate-key="feature4_card3_title">📈 Calcul du Score</h4><p data-translate-key="feature4_card3_text">Les résultats finaux s'affichent instantanément dans votre CRM, vous faisant gagner un temps précieux.</p></div></div></div><div class="screenshot screenshot-dark" onclick="openLightbox(this)"><img src="create_form_booking.png" alt="Configuration Quiz"></div></div></div></section>
-<section class="section"><div class="inner"><div class="split split-reverse"><div><span class="section-tag" data-translate-key="feature5_tag">Fonctionnalité Clé 5</span><h2 data-translate-key="feature5_title">Gestion d'Équipe et<br>Droits "À la Carte"</h2><p class="subtitle" data-translate-key="feature5_subtitle">Collaborez en toute sécurité. Créez des comptes pour vos collaborateurs et décidez précisément de ce qu'ils peuvent voir ou faire.</p><div class="card-grid" style="grid-template-columns:1fr"><div class="card step-card"><h4 data-translate-key="feature5_card1_title">👤 Rôles Personnalisés</h4><p data-translate-key="feature5_card1_text">Donnez un accès restreint à un seul formulaire, ou un accès global à tous vos projets selon l'employé.</p></div><div class="card step-card"><h4 data-translate-key="feature5_card2_title">🔐 Permissions Granulaires</h4><p data-translate-key="feature5_card2_text">Décidez si un utilisateur peut simplement voir les données (Lecture), les modifier, ou même les supprimer.</p></div><div class="card step-card"><h4 data-translate-key="feature5_card3_title">🧪 Mode Démo Sécurisé</h4><p data-translate-key="feature5_card3_text">Créez un compte "Test" pour vos propres clients, leur permettant de découvrir la puissance de l'outil sans jamais toucher à vos paramètres ou données sensibles.</p></div></div></div><div class="screenshot" onclick="openLightbox(this)"><img src="users_access.png" alt="Gestion des Utilisateurs"></div></div></div></section>
-<section class="section-light"><div class="inner"><div class="split"><div><span class="section-tag" data-translate-key="feature6_tag">Fonctionnalité Clé 6</span><h2 data-translate-key="feature6_title">Marque Blanche : L'Appli<br>devient VOTRE Appli</h2><p class="subtitle" data-translate-key="feature6_subtitle">Faites de SmartForm Builder votre propre outil. En quelques clics, personnalisez l'interface pour qu'elle corresponde parfaitement à l'identité de votre entreprise.</p><div class="card-grid" style="grid-template-columns:1fr"><div class="card step-card"><h4 data-translate-key="feature6_card1_title">🎨 Votre Logo, Vos Couleurs</h4><p data-translate-key="feature6_card1_text">Changez le logo principal, l'icône, les couleurs des boutons, la police et le fond d'écran. Personnalisation visuelle totale.</p></div><div class="card step-card"><h4 data-translate-key="feature6_card2_title">🌍 Multilingue & RTL</h4><p data-translate-key="feature6_card2_text">L'interface s'adapte automatiquement à la langue de votre choix pour une expérience utilisateur sans friction :<br><strong>Français, Anglais, Espagnol, Allemand, Arabe (Support RTL intégré), Hébreu.</strong></p></div></div></div><div class="screenshot" onclick="openLightbox(this)"><img src="settings.png" alt="Paramètres Marque Blanche"></div></div></div></section>
-<section class="section"><div class="inner"><div style="text-align:center"><span class="section-tag" data-translate-key="guide_tag">Tutoriel</span><h2 style="text-align:center" data-translate-key="guide_title">Guide de Démarrage Rapide</h2><p class="subtitle" style="text-align:center;margin:0 auto 50px" data-translate-key="guide_subtitle">Votre Premier Formulaire complet et fonctionnel en moins de 5 minutes.</p></div><div class="card-grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))"><div class="card step-card"><div class="step-number">1</div><h4 data-translate-key="guide_step1_title">Connexion</h4><p data-translate-key="guide_step1_text">Connectez-vous à votre espace privé SmartForm Builder avec vos identifiants.</p></div><div class="card step-card"><div class="step-number">2</div><h4 data-translate-key="guide_step2_title">Nouveau Projet</h4><p data-translate-key="guide_step2_text">Sur le tableau de bord, cliquez simplement sur le bouton "Créer Formulaire".</p></div><div class="card step-card"><div class="step-number">3</div><h4 data-translate-key="guide_step3_title">Personnalisation</h4><p data-translate-key="guide_step3_text">Donnez un nom, choisissez une icône, vos couleurs, et votre police d'écriture.</p></div><div class="card step-card"><div class="step-number">4</div><h4 data-translate-key="guide_step4_title">Ajout des Champs</h4><p data-translate-key="guide_step4_text">Cliquez sur "Ajouter Champ", choisissez le type (texte, date, choix...) et configurez la question.</p></div><div class="card step-card"><div class="step-number">5</div><h4 data-translate-key="guide_step5_title">Modules Avancés</h4><p data-translate-key="guide_step5_text"><em>(Optionnel)</em> Dans les paramètres, activez le Mode Rendez-vous ou le Mode Quiz selon votre besoin.</p></div><div class="card step-card"><div class="step-number">6</div><h4 data-translate-key="guide_step6_title">Publication</h4><p data-translate-key="guide_step6_text">Cliquez sur "Publier". Partagez votre lien public et regardez les réponses arriver dans votre base de données !</p></div></div></div></section>
-<section class="section-demo"><div class="inner" style="text-align:center"><h2 style="color:#fff;text-align:center;margin-bottom:15px" data-translate-key="demo_title">Prêt à transformer vos interactions ?</h2><p class="subtitle" style="color:rgba(255,255,255,0.9);text-align:center;margin:0 auto 40px;max-width:700px" data-translate-key="demo_subtitle">SmartForm Builder est bien plus qu'un simple créateur de formulaires. C'est le moteur de votre productivité. Testez notre environnement de démonstration dès aujourd'hui.</p>
+<!-- ============================================= -->
+<!-- SECTION 1 : BOUTONS FLOTTANTS (ACTION BAR)      -->
+<!-- ============================================= -->
+<div class="floating-actions">
+    <a href="https://fuma-ops.github.io/smartform-builder-catalogue/app.html" target="_blank" class="floating-btn btn-demo">
+        <i class="fa-solid fa-rocket"></i> Essayer la Démo
+    </a>
+    <a href="#contact" class="floating-btn">
+        <i class="fa-solid fa-envelope"></i> Contact
+    </a>
+    <a href="#pricing" class="floating-btn">
+        <i class="fa-solid fa-tag"></i> Acheter une Licence
+    </a>
+</div>
 
-<!-- CORRECTION 2 : Le VRAI bouton avec le lien de votre application -->
-<!-- Le lien pointe maintenant vers la page app.html de votre site -->
-<a href="https://fuma-ops.github.io/smartform-builder-catalogue/app.html" target="_blank" class="demo-btn" data-translate-key="demo_button">🚀 Essayer la Démo en Ligne</a>
+<!-- ============================================= -->
+<!-- SECTION 2 : HERO (IMAGE HOLOGRAMME)       -->
+<!-- ============================================= -->
+<section class="hero">
+    <h1>Reprenez le Contrôle de Vos <span>Données</span>.</h1>
+    <p>La plateforme tout-en-un pour créer formulaires, quiz et systèmes de réservation, hébergée sur votre propre Google Drive. Sans abonnement.</p>
+    <div class="hero-image-container">
+        <!-- REMPLACEZ 'image-hologram.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
+        <img src="hologram.jpg" alt="Dashboard SmartForm Builder">
+    </div>
+</section>
 
-<div style="background:rgba(255,255,255,0.15);padding:20px 30px;border-radius:16px;margin-top:30px;display:inline-block;border:1px solid rgba(255,255,255,0.3)"><p style="margin-bottom:8px;color:#fff"><span data-translate-key="demo_user">Identifiant</span> : <code style="background:rgba(0,0,0,0.2);padding:3px 8px;border-radius:4px">demo</code></p><p style="margin-bottom:0;color:#fff"><span data-translate-key="demo_pass">Mot de passe</span> : <code style="background:rgba(0,0,0,0.2);padding:3px 8px;border-radius:4px">demo2026</code></p></div></div></section>
-<section class="section-dark"><div class="inner"><div style="text-align:center"><span class="section-tag section-tag-light" data-translate-key="usecase_tag">Cas d'Usage</span><h2 style="color:#fff;text-align:center" data-translate-key="usecase_title">Conçu pour Tous les Métiers</h2><p class="subtitle subtitle-light" style="text-align:center;margin:0 auto 40px" data-translate-key="usecase_subtitle">Découvrez comment SMARTFORM BUILDER s'adapte à votre secteur d'activité.</p></div><div class="usecase-grid"><div class="usecase"><div class="usecase-icon">🏥</div><h4 data-translate-key="usecase1_title">Cabinet Médical</h4><p data-translate-key="usecase1_text">Formulaire d'admission patient avec historique, logique conditionnelle et prise de rendez-vous intégrée.</p></div><div class="usecase"><div class="usecase-icon">🎓</div><h4 data-translate-key="usecase2_title">Examen Éducatif</h4><p data-translate-key="usecase2_text">Quiz avec support mathématique, timer anti-triche, auto-correction instantanée et export des résultats.</p></div><div class="usecase"><div class="usecase-icon">🏢</div><h4 data-translate-key="usecase3_title">Agence de Services</h4><p data-translate-key="usecase3_text">Système de réservation de créneaux avec validation manuelle, notifications e-mail et synchronisation Google Calendar.</p></div><div class="usecase"><div class="usecase-icon">⚖️</div><h4 data-translate-key="usecase4_title">Cabinet d'Avocat</h4><p data-translate-key="usecase4_text">Collecte sécurisée des informations client, upload de documents et prise de rendez-vous pour consultation.</p></div><div class="usecase"><div class="usecase-icon">💪</div><h4 data-translate-key="usecase5_title">Salle de Sport / Coach</h4><p data-translate-key="usecase5_text">Formulaire d'inscription, questionnaire de santé et réservation de séances de coaching personnalisées.</p></div><div class="usecase"><div class="usecase-icon">💼</div><h4 data-translate-key="usecase6_title">Recrutement RH</h4><p data-translate-key="usecase6_text">Formulaire de candidature avec filtrage automatique, droits d'accès par recruteur et export des profils.</p></div><div class="usecase"><div class="usecase-icon">🎟️</div><h4 data-translate-key="usecase7_title">Inscription Événement</h4><p data-translate-key="usecase7_text">Formulaire d'inscription en ligne pour des conférences, webinaires ou ateliers, avec gestion des participants.</p></div><div class="usecase"><div class="usecase-icon">🏠</div><h4 data-translate-key="usecase8_title">Agence Immobilière</h4><p data-translate-key="usecase8_text">Demande de visite pour des biens, collecte des critères de recherche des acheteurs et gestion des contacts.</p></div></div></div></section>
-<section class="section-dark"><div class="inner"><div style="text-align:center"><span class="section-tag section-tag-light" data-translate-key="pricing_tag">Tarifs & Licences</span><h2 style="color:#fff;text-align:center" data-translate-key="pricing_title">Choisissez le Plan Adapté à Vos Besoins</h2><p class="subtitle subtitle-light" style="text-align:center;margin:0 auto 40px" data-translate-key="pricing_subtitle">Une licence à vie. Pas d'abonnement mensuel. Payez une seule fois et utilisez l'application pour toujours.</p></div><div class="card-grid" style="grid-template-columns:1fr 1fr; gap:30px; align-items: stretch;"><div class="pricing-card"><h3 data-translate-key="pricing_standard_title">Licence Standard</h3><div class="price">1500$<span data-translate-key="pricing_onetime"> / Paiement unique</span></div><p style="color:#94a3b8;" data-translate-key="pricing_standard_subtitle">L'essentiel pour automatiser votre collecte de données.</p><ul><li data-translate-key="pricing_standard_feat1">Accès complet à vie</li><li data-translate-key="pricing_standard_feat2">Toutes les fonctionnalités incluses</li><li data-translate-key="pricing_standard_feat3">Mises à jour mineures gratuites</li><li data-translate-key="pricing_standard_feat4">Support par e-mail</li></ul><a href="#" class="pricing-btn" data-translate-key="pricing_contact_btn">Nous Contacter</a></div><div class="pricing-card premium"><div class="premium-badge" data-translate-key="pricing_premium_badge">Recommandé</div><h3 data-translate-key="pricing_premium_title">Pack Premium</h3><div class="price">2000$<span data-translate-key="pricing_onetime"> / Paiement unique</span></div><p style="color:#e2e8f0;" data-translate-key="pricing_premium_subtitle">La solution clé en main avec un accompagnement personnalisé.</p><ul><li data-translate-key="pricing_premium_feat1"><b>Tout ce qui est inclus dans Standard, plus :</b></li><li data-translate-key="pricing_premium_feat2">Formation complète à l'outil</li><li data-translate-key="pricing_premium_feat3">Configuration de votre workflow d'entreprise</li><li data-translate-key="pricing_premium_feat4">Suivi personnalisé pendant 1 mois</li><li data-translate-key="pricing_premium_feat5">Support prioritaire</li></ul><a href="#" class="pricing-btn premium-btn" data-translate-key="pricing_contact_btn">Nous Contacter</a></div></div></div></section>
-<footer class="footer"><p style="font-size:1.8rem;margin-bottom:15px">💎</p><p><strong>SMARTFORM BUILDER</strong></p><p style="margin-top:8px" data-translate-key="footer_rights">© 2026 Tous droits réservés</p><div class="language-switcher"><a href="#" onclick="changeLanguage('fr'); return false;" class="lang-link active" data-lang="fr">Français</a><a href="#" onclick="changeLanguage('en'); return false;" class="lang-link" data-lang="en">English</a><a href="#" onclick="changeLanguage('ar'); return false;" class="lang-link" data-lang="ar">العربية</a></div></footer>
+<!-- ============================================= -->
+<!-- SECTION 3 : CAS D'USAGE VISUELS         -->
+<!-- ============================================= -->
+<main class="showcase-wrapper">
+
+    <!-- Bloc 1 : Médical -->
+    <div class="showcase-row">
+        <div class="showcase-text">
+            <span class="showcase-tag">Secteur Médical</span>
+            <h2>Automatisez Votre Clinique</h2>
+            <p>Gérez vos dossiers patients et automatisez la prise de rendez-vous avec une solution 100% privée, hébergée sur votre propre Google Drive.</p>
+            <ul class="showcase-list">
+                <li>Formulaires Patients Personnalisés</li>
+                <li>Synchronisation Google Agenda</li>
+                <li>Données 100% Confidentielles</li>
+            </ul>
+        </div>
+        <div class="showcase-img">
+            <!-- REMPLACEZ 'image-medical.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
+            <img src="medical.jpg" alt="SmartForm Builder pour clinique médicale">
+        </div>
+    </div>
+
+    <!-- Bloc 2 : Juridique -->
+    <div class="showcase-row">
+        <div class="showcase-text">
+            <span class="showcase-tag">Secteur Juridique</span>
+            <h2>Sécurisez l'Accueil Client</h2>
+            <p>Collectez les informations confidentielles de vos clients, gérez vos dossiers et planifiez vos consultations en toute sérénité. Zéro abonnement, souveraineté totale des données.</p>
+            <ul class="showcase-list">
+                <li>Formulaires d'Admission Confidentiels</li>
+                <li>Réservation de Consultations</li>
+                <li>Hébergé sur Votre Google Drive</li>
+            </ul>
+        </div>
+        <div class="showcase-img">
+            <!-- REMPLACEZ 'image-law.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
+            <img src="law.jpg" alt="SmartForm Builder pour cabinet d'avocats">
+        </div>
+    </div>
+
+    <!-- Bloc 3 : Éducation -->
+    <div class="showcase-row">
+        <div class="showcase-text">
+            <span class="showcase-tag">Éducation & Formation</span>
+            <h2>Engagez et Évaluez Facilement</h2>
+            <p>Créez des quiz interactifs avec correction automatique, suivez les scores de vos apprenants en temps réel et gagnez un temps précieux. Idéal pour les formateurs et les écoles.</p>
+            <ul class="showcase-list">
+                <li>Quiz Interactifs Chronométrés</li>
+                <li>Notation Instantanée</li>
+                <li>Suivi Automatisé des Scores</li>
+            </ul>
+        </div>
+        <div class="showcase-img">
+            <!-- REMPLACEZ 'image-education.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
+            <img src="education.jpg" alt="SmartForm Builder pour le secteur éducatif">
+        </div>
+    </div>
+
+    <!-- Bloc 4 : Fitness -->
+    <div class="showcase-row">
+        <div class="showcase-text">
+            <span class="showcase-tag">Fitness & Coaching</span>
+            <h2>Optimisez Votre Salle de Sport</h2>
+            <p>Simplifiez l'inscription de vos membres, gérez les réservations de séances de coaching et centralisez toutes les informations dans un CRM intégré, sans frais mensuels.</p>
+            <ul class="showcase-list">
+                <li>Formulaires d'Inscription en Ligne</li>
+                <li>Réservation de Coaching Automatisée</li>
+                <li>CRM Membres sur Google Drive</li>
+            </ul>
+        </div>
+        <div class="showcase-img">
+            <!-- REMPLACEZ 'image-gym.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
+            <img src="gym.jpg" alt="SmartForm Builder pour salle de sport">
+        </div>
+    </div>
+
+</main>
+
+<!-- ============================================= -->
+<!-- SECTION 4 : FORMULAIRE DE CONTACT       -->
+<!-- ============================================= -->
+<section class="contact-section" id="contact">
+    <div class="contact-container">
+        <h2>Contactez-nous</h2>
+        <p>Une question ? Intéressé par une licence ? Remplissez ce formulaire et nous vous répondrons dans les plus brefs délais.</p>
+        <form id="contact-form" class="contact-form">
+            <div class="form-group">
+                <label for="name">Votre Nom</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Votre Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Votre Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit"><i class="fa-solid fa-paper-plane"></i> Envoyer le Message</button>
+        </form>
+    </div>
+</section>
+
+<!-- ============================================= -->
+<!-- SECTION 5 : TARIFS (ID pour le bouton flottant)-->
+<!-- ============================================= -->
+<section class="pricing-section" id="pricing">
+    <h2>Nos Licences à Vie</h2>
+    <!-- (Ici vous pouvez ajouter vos cartes de prix comme avant) -->
+    <!-- J'ai mis un texte simple pour l'instant -->
+    <p style="color: #94a3b8; max-width: 600px; margin: 0 auto;">Nous proposons deux licences à paiement unique : Standard à 1500€ et Premium (avec accompagnement) à 2000€. Contactez-nous pour plus de détails.</p>
+</section>
+
+<footer>
+    <p>© 2026 SMARTFORM BUILDER - Tous droits réservés</p>
+</footer>
 
 <script>
-// --- Script du Lightbox ---
-function openLightbox(el){const img=el.querySelector('img');document.getElementById('lightbox-img').src=img.src;document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden';}
-function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow='';}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+// --- Script pour le formulaire de contact ---
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Empêche l'envoi normal du formulaire
 
-// --- Script de Traduction ---
-const translations = {
-  fr: { /* Laissé vide car le HTML est la source par défaut */ },
-  en: {
-    hero_badge:"INTELLIGENT DATA COLLECTION",hero_title:"Welcome to<br><span>SMARTFORM BUILDER</span>",hero_p1:"Forget boring forms and manual processes. Transform how you interact with your clients, patients, or teams.",hero_p2:"Our platform is designed to be both incredibly powerful and astonishingly simple. Whether you're a sports coach, a medical clinic, or a business, the tool adapts to you.",hero_quote:"\"Create forms that work for you, not the other way around.\"",
-    feature1_tag:"Key Feature 1",feature1_title:"Visual and Intuitive<br>Builder",feature1_subtitle:"Create beautiful, smart forms in clicks. Our visual interface lets you build questionnaires with drag-and-drop, no code required.",feature1_card1_title:"🔘 Various Fields",feature1_card1_text:"Short text, long text, numbers, dates, dropdown lists, multiple choice, checkboxes.",feature1_card2_title:"🧠 Conditional Logic",feature1_card2_text:"Show or hide questions based on previous answers. Make your forms shorter and more relevant.",feature1_card3_title:"📐 Mathematical Support",feature1_card3_text:"Integrate complex formulas directly into your questions with KaTeX support. Perfect for technical quizzes.",
-    feature2_tag:"Key Feature 2",feature2_title:"Integrated Appointment<br>Booking Module",feature2_subtitle:"Turn any form into a powerful appointment booking system. No more back-and-forth emails to find a time slot!",feature2_card1_title:"📅 Smart Calendar",feature2_card1_text:"Clients only see available slots based on your schedule, breaks, and max capacity.",feature2_card2_title:"🔄 Google Calendar Sync",feature2_card2_text:"Each confirmed appointment is automatically added to your Google Calendar. No more double bookings!",feature2_card3_title:"✅ Manual Approval",feature2_card3_text:"Automatically accept appointments or approve them manually to maintain full control.",feature2_card4_title:"📧 Automated Notifications",feature2_card4_text:"Send fully customized confirmation, cancellation, or modification emails.",
-    feature3_tag:"Key Feature 3",feature3_title:"Integrated CRM: Your<br>Centralized Database",feature3_subtitle:"Every form response is automatically saved into a powerful CRM. Say goodbye to messy spreadsheets.",feature3_card1_title:"📊 Dashboard View",feature3_card1_text:"View all submissions at a glance, sorted and organized right under your form.",feature3_card2_title:"🔍 Search and Filters",feature3_card2_text:"Instantly find any client information with the smart search bar.",feature3_card3_title:"⚡ Quick Actions (PDF)",feature3_card3_text:"Edit, delete, or download any submission as a PDF with a single click.",
-    feature4_tag:"Key Feature 4",feature4_title:"Quiz Mode with<br>Auto-Grading",feature4_subtitle:"Create quizzes, assessments, or knowledge tests in a snap. Evaluate and engage your audience.",feature4_card1_title:"✅ Automatic Correction",feature4_card1_text:"Set the correct answers and points. The total score is calculated automatically.",feature4_card2_title:"⏱️ Anti-Cheat Timer",feature4_card2_text:"Visible countdown, programmable opening period, and attempt limits per user.",feature4_card3_title:"📈 Score Calculation",feature4_card3_text:"Final results are displayed instantly in your CRM, saving you valuable time.",
-    feature5_tag:"Key Feature 5",feature5_title:"Team Management &<br>Custom Permissions",feature5_subtitle:"Collaborate securely. Create accounts for your colleagues and decide exactly what they can see or do.",feature5_card1_title:"👤 Custom Roles",feature5_card1_text:"Grant restricted access to a single form or global access to all your projects depending on the employee.",feature5_card2_title:"🔐 Granular Permissions",feature5_card2_text:"Decide if a user can simply view data (Read), modify it, or even delete it.",feature5_card3_title:"🧪 Secure Demo Mode",feature5_card3_text:"Create a 'Test' account for your own clients, allowing them to discover the tool's power without touching your sensitive data.",
-    feature6_tag:"Key Feature 6",feature6_title:"White-Label: The App<br>becomes YOUR App",feature6_subtitle:"Make SmartForm Builder your own tool. In just a few clicks, customize the interface to perfectly match your company's identity.",feature6_card1_title:"🎨 Your Logo, Your Colors",feature6_card1_text:"Change the main logo, icon, button colors, font, and background. Total visual customization.",feature6_card2_title:"🌍 Multilingual & RTL",feature6_card2_text:"The interface automatically adapts to your chosen language for a frictionless user experience:<br><strong>French, English, Spanish, German, Arabic (RTL support), Hebrew.</strong>",
-    guide_tag:"Tutorial",guide_title:"Quick Start Guide",guide_subtitle:"Your first fully functional form in under 5 minutes.",guide_step1_title:"Login",guide_step1_text:"Log in to your private SmartForm Builder space with your credentials.",guide_step2_title:"New Project",guide_step2_text:"On the dashboard, simply click the 'Create Form' button.",guide_step3_title:"Customization",guide_step3_text:"Give it a name, choose an icon, your colors, and your font.",guide_step4_title:"Add Fields",guide_step4_text:"Click 'Add Field', choose the type (text, date, choice...), and configure the question.",guide_step5_title:"Advanced Modules",guide_step5_text:"<em>(Optional)</em> In the settings, enable Booking Mode or Quiz Mode as needed.",guide_step6_title:"Publish",guide_step6_text:"Click 'Publish'. Share your public link and watch the responses roll into your database!",
-    demo_title:"Ready to transform your interactions?",demo_subtitle:"SmartForm Builder is more than just a form builder. It's your productivity engine. Try our demo environment today.",demo_button:"🚀 Try the Live Demo",demo_user:"Username",demo_pass:"Password",
-    usecase_tag:"Use Cases",usecase_title:"Designed for All Professions",usecase_subtitle:"Discover how SMARTFORM BUILDER adapts to your industry.",usecase1_title:"Medical Office",usecase1_text:"Patient admission form with medical history, conditional logic, and integrated appointment booking.",usecase2_title:"Educational Exam",usecase2_text:"Quiz with mathematical support, anti-cheat timer, instant auto-grading, and results export.",usecase3_title:"Service Agency",usecase3_text:"Slot booking system with manual approval, email notifications, and Google Calendar synchronization.",usecase4_title:"Law Firm",usecase4_text:"Secure client information collection, document uploads, and appointment booking for consultations.",usecase5_title:"Gym / Coach",usecase5_text:"Registration form, health questionnaire, and personalized coaching session booking.",usecase6_title:"HR Recruitment",usecase6_text:"Application form with automatic filtering, recruiter-specific access rights, and profile export.",usecase7_title:"Event Registration",usecase7_text:"Online registration form for conferences, webinars, or workshops, with attendee management.",usecase8_title:"Real Estate Agency",usecase8_text:"Property viewing requests, collection of buyer search criteria, and contact management.",
-    pricing_tag:"Pricing & Licenses",pricing_title:"Choose the Plan That Fits Your Needs",pricing_subtitle:"A lifetime license. No monthly subscription. Pay once and use the application forever.",pricing_onetime:" / one-time payment",pricing_standard_title:"Standard License",pricing_standard_subtitle:"The essentials to automate your data collection.",pricing_standard_feat1:"Full lifetime access",pricing_standard_feat2:"All features included",pricing_standard_feat3:"Free minor updates",pricing_standard_feat4:"Email support",pricing_contact_btn:"Contact Us",pricing_premium_badge:"Recommended",pricing_premium_title:"Premium Pack",pricing_premium_subtitle:"The turnkey solution with personalized support.",pricing_premium_feat1:"<b>Everything in Standard, plus:</b>",pricing_premium_feat2:"Complete tool training",pricing_premium_feat3:"Your business workflow setup",pricing_premium_feat4:"1-month personalized follow-up",pricing_premium_feat5:"Priority support",
-    footer_rights:"© 2026 All rights reserved"
-  },
-  ar: {
-    hero_badge:"جمع بيانات ذكي",hero_title:"مرحباً بكم في<br><span>SMARTFORM BUILDER</span>",hero_p1:"انسوا النماذج المملة والعمليات اليدوية. غيروا طريقة تفاعلكم مع عملائكم، مرضاكم، أو فرقكم.",hero_p2:"صُممت منصتنا لتكون قوية بشكل لا يصدق وسهلة الاستخدام. سواء كنتم مدربين رياضيين، عيادة طبية، أو شركة، الأداة تتكيف معكم.",hero_quote:"\"أنشئوا نماذج تعمل لأجلكم، وليس العكس.\"",
-    feature1_tag:"الميزة الرئيسية 1",feature1_title:"منشئ نماذج مرئي<br>وبديهي",feature1_subtitle:"أنشئ نماذج جميلة وذكية ببضع نقرات. تتيح لك واجهتنا المرئية بناء استبيانات دون كتابة سطر واحد من التعليمات البرمجية بفضل السحب والإفلات.",feature1_card1_title:"🔘 حقول متنوعة",feature1_card1_text:"نص قصير، نص طويل، أرقام، تواريخ، قوائم منسدلة، اختيار متعدد، مربعات اختيار.",feature1_card2_title:"🧠 منطق شرطي",feature1_card2_text:"إظهار أو إخفاء الأسئلة بناءً على الإجابات السابقة. اجعل نماذجك أقصر وأكثر صلة.",feature1_card3_title:"📐 دعم رياضي",feature1_card3_text:"أدمج الصيغ المعقدة مباشرة في أسئلتك بفضل دعم KaTeX. مثالي للاختبارات الفنية.",
-    feature2_tag:"الميزة الرئيسية 2",feature2_title:"وحدة حجز المواعيد<br>المدمجة",feature2_subtitle:"حوّل أي نموذج إلى نظام قوي لحجز المواعيد. لا مزيد من رسائل البريد الإلكتروني المتكررة للعثور على موعد!",feature2_card1_title:"📅 تقويم ذكي",feature2_card1_text:"يرى العميل فقط المواعيد المتاحة بناءً على جدولك الزمني، استراحاتك، والقدرة الاستيعابية القصوى.",feature2_card2_title:"🔄 مزامنة تقويم جوجل",feature2_card2_text:"تُضاف كل المواعيد المؤكدة تلقائيًا إلى تقويم جوجل الخاص بك. لا مزيد من الحجوزات المزدوجة!",feature2_card3_title:"✅ موافقة يدوية",feature2_card3_text:"اقبل المواعيد تلقائيًا أو وافق عليها يدويًا للحفاظ على السيطرة الكاملة.",feature2_card4_title:"📧 إشعارات آلية",feature2_card4_text:"أرسل رسائل بريد إلكتروني مخصصة بالكامل للتأكيد، الإلغاء، أو التعديل.",
-    feature3_tag:"الميزة الرئيسية 3",feature3_title:"إدارة علاقات العملاء مدمجة<br>قاعدة بياناتك المركزية",feature3_subtitle:"تُحفظ كل إجابة تلقائيًا في نظام إدارة علاقات عملاء قوي. وداعًا لجداول البيانات الفوضوية.",feature3_card1_title:"📊 عرض لوحة التحكم",feature3_card1_text:"شاهد جميع الإرسالات بلمحة واحدة، مصنفة ومنظمة مباشرة تحت النموذج الخاص بك.",feature3_card2_title:"🔍 بحث وفلاتر",feature3_card2_text:"اعثر على أي معلومات عن العملاء على الفور باستخدام شريط البحث الذكي.",feature3_card3_title:"⚡ إجراءات سريعة (PDF)",feature3_card3_text:"قم بتعديل، حذف، أو تنزيل أي إرسال بصيغة PDF بنقرة واحدة.",
-    feature4_tag:"الميزة الرئيسية 4",feature4_title:"وضع الاختبار مع<br>تصحيح تلقائي",feature4_subtitle:"أنشئ اختبارات، تقييمات، أو اختبارات معرفية في لمح البصر. قم بتقييم وإشراك جمهورك.",feature4_card1_title:"✅ تصحيح تلقائي",feature4_card1_text:"حدد الإجابات الصحيحة والنقاط. يتم حساب النتيجة الإجمالية تلقائيًا.",feature4_card2_title:"⏱️ مؤقت لمنع الغش",feature4_card2_text:"عد تنازلي مرئي، فترة فتح قابلة للبرمجة، وحدود للمحاولات لكل مستخدم.",feature4_card3_title:"📈 حساب الدرجات",feature4_card3_text:"تظهر النتائج النهائية على الفور في نظام إدارة علاقات العملاء، مما يوفر لك وقتًا ثمينًا.",
-    feature5_tag:"الميزة الرئيسية 5",feature5_title:"إدارة الفريق وصلاحيات<br>وصول مخصصة",feature5_subtitle:"تعاون بأمان. أنشئ حسابات لزملائك وحدد بدقة ما يمكنهم رؤيته أو القيام به.",feature5_card1_title:"👤 أدوار مخصصة",feature5_card1_text:"امنح وصولاً مقيدًا إلى نموذج واحد أو وصولاً شاملاً لجميع مشاريعك حسب الموظف.",feature5_card2_title:"🔐 أذونات دقيقة",feature5_card2_text:"قرر ما إذا كان يمكن للمستخدم عرض البيانات فقط (قراءة)، تعديلها، أو حتى حذفها.",feature5_card3_title:"🧪 وضع تجريبي آمن",feature5_card3_text:"أنشئ حساب 'اختبار' لعملائك، مما يسمح لهم باكتشاف قوة الأداة دون المساس ببياناتك الحساسة.",
-    feature6_tag:"الميزة الرئيسية 6",feature6_title:"العلامة البيضاء: التطبيق<br>يصبح تطبيقك الخاص",feature6_subtitle:"اجعل SmartForm Builder أداتك الخاصة. ببضع نقرات، قم بتخصيص الواجهة لتتناسب تمامًا مع هوية شركتك.",feature6_card1_title:"🎨 شعارك وألوانك",feature6_card1_text:"غير الشعار الرئيسي، الأيقونة، ألوان الأزرار، الخط، والخلفية. تخصيص بصري كامل.",feature6_card2_title:"🌍 متعدد اللغات و RTL",feature6_card2_text:"تتكيف الواجهة تلقائيًا مع اللغة التي تختارها لتجربة مستخدم سلسة:<br><strong>الفرنسية، الإنجليزية، الإسبانية، الألمانية، العربية (دعم RTL)، العبرية.</strong>",
-    guide_tag:"دليل تعليمي",guide_title:"دليل البدء السريع",guide_subtitle:"أول نموذج لك يعمل بكامل طاقته في أقل من 5 دقائق.",guide_step1_title:"تسجيل الدخول",guide_step1_text:"سجل الدخول إلى مساحتك الخاصة في SmartForm Builder باستخدام بيانات الاعتماد الخاصة بك.",guide_step2_title:"مشروع جديد",guide_step2_text:"من لوحة التحكم، انقر ببساطة على زر 'إنشاء نموذج'.",guide_step3_title:"تخصيص",guide_step3_text:"أعطه اسمًا، اختر أيقونة، ألوانك، وخطك.",guide_step4_title:"إضافة حقول",guide_step4_text:"انقر على 'إضافة حقل'، اختر النوع (نص، تاريخ، اختيار...)، وقم بتكوين السؤال.",guide_step5_title:"وحدات متقدمة",guide_step5_text:"<em>(اختياري)</em> في الإعدادات، قم بتفعيل وضع الحجز أو وضع الاختبار حسب حاجتك.",guide_step6_title:"نشر",guide_step6_text:"انقر على 'نشر'. شارك رابطك العام وشاهد الردود تصل إلى قاعدة بياناتك!",
-    demo_title:"هل أنت مستعد لتغيير تفاعلاتك؟",demo_subtitle:"SmartForm Builder هو أكثر من مجرد منشئ نماذج. إنه محرك إنتاجيتك. جرب بيئتنا التجريبية اليوم.",demo_button:"🚀 جرب النسخة التجريبية المباشرة",demo_user:"اسم المستخدم",demo_pass:"كلمة المرور",
-    usecase_tag:"حالات الاستخدام",usecase_title:"مصمم لجميع المهن",usecase_subtitle:"اكتشفوا كيف يتكيف SMARTFORM BUILDER مع قطاع أعمالكم.",usecase1_title:"عيادة طبية",usecase1_text:"نموذج قبول المرضى مع السجل الطبي، المنطق الشرطي، وحجز المواعيد المدمج.",usecase2_title:"امتحان تعليمي",usecase2_text:"اختبار مع دعم للمعادلات الرياضية، مؤقت لمنع الغش، تصحيح تلقائي فوري، وتصدير للنتائج.",usecase3_title:"وكالة خدمات",usecase3_text:"نظام حجز مواعيد مع موافقة يدوية، إشعارات عبر البريد الإلكتروني، ومزامنة مع تقويم جوجل.",usecase4_title:"مكتب محاماة",usecase4_text:"جمع آمن لمعلومات العملاء، رفع المستندات، وحجز مواعيد للاستشارات القانونية.",usecase5_title:"صالة رياضية / مدرب",usecase5_text:"نموذج تسجيل، استبيان صحي، وحجز جلسات تدريب شخصية.",usecase6_title:"توظيف الموارد البشرية",usecase6_text:"نموذج تقديم طلبات مع فلترة تلقائية، صلاحيات وصول مخصصة، وتصدير لملفات المرشحين.",usecase7_title:"تسجيل في حدث",usecase7_text:"نموذج تسجيل عبر الإنترنت للمؤتمرات أو ورش العمل، مع إدارة الحضور.",usecase8_title:"وكالة عقارية",usecase8_text:"طلبات زيارة العقارات، جمع معايير بحث المشترين، وإدارة جهات الاتصال.",
-    pricing_tag:"الأسعار والتراخيص",pricing_title:"اختر الخطة التي تناسب احتياجاتك",pricing_subtitle:"رخصة مدى الحياة. لا يوجد اشتراك شهري. ادفع مرة واحدة واستخدم التطبيق إلى الأبد.",pricing_onetime:" / دفعة واحدة",pricing_standard_title:"الرخصة القياسية",pricing_standard_subtitle:"الأساسيات لأتمتة جمع بياناتك.",pricing_standard_feat1:"وصول كامل مدى الحياة",pricing_standard_feat2:"جميع الميزات متضمنة",pricing_standard_feat3:"تحديثات ثانوية مجانية",pricing_standard_feat4:"دعم عبر البريد الإلكتروني",pricing_contact_btn:"اتصل بنا",pricing_premium_badge:"موصى به",pricing_premium_title:"الباقة المميزة",pricing_premium_subtitle:"الحل المتكامل مع دعم شخصي.",pricing_premium_feat1:"<b>كل ما في الباقة القياسية، بالإضافة إلى:</b>",pricing_premium_feat2:"تدريب كامل على الأداة",pricing_premium_feat3:"إعداد وتكوين سير عمل شركتك",pricing_premium_feat4:"متابعة شخصية لمدة شهر",pricing_premium_feat5:"دعم ذو أولوية",
-    footer_rights:"© 2026 جميع الحقوق محفوظة"
-  }
-};
+    // Vos informations (À MODIFIER)
+    const yourEmail = "khfuma@gmail.com";
+    const yourWhatsAppNumber = "+212698855901";
 
-const originalTexts = {};
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('[data-translate-key]').forEach(element => {
-    originalTexts[element.getAttribute('data-translate-key')] = element.innerHTML;
-  });
-  changeLanguage('fr');
+    // Récupération des données du formulaire
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    const subject = `Nouveau message de ${name} via la brochure SmartForm`;
+
+    // 1. Envoi par Email via un service externe (Formspree, gratuit pour commencer)
+    // C'est la méthode la plus fiable depuis une page statique GitHub.
+    fetch(`https://formspree.io/f/YOUR_UNIQUE_CODE`, { // REMPLACEZ VOTRE CODE FORMSPREE ICI
+        method: 'POST',
+        body: JSON.stringify({ name: name, email: email, message: message }),
+        headers: { 'Content-Type': 'application/json' }
+    }).then(response => {
+        if (response.ok) {
+            // 2. Redirection vers WhatsApp après l'envoi de l'email
+            const whatsappMessage = `Bonjour, je suis ${name}. Je vous contacte via votre site SmartForm Builder. Mon message est : "${message}". Mon email est ${email}.`;
+            const whatsappUrl = `https://wa.me/${yourWhatsAppNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            // Affiche un message de succès
+            alert('Merci ! Votre message a été envoyé. Nous vous redirigeons vers WhatsApp.');
+            document.getElementById('contact-form').reset();
+        } else {
+            alert('Une erreur est survenue. Veuillez réessayer.');
+        }
+    }).catch(error => {
+        alert('Une erreur est survenue. Veuillez réessayer.');
+    });
 });
-function changeLanguage(lang) {
-  if (lang === 'ar' || lang === 'he') {
-    document.body.classList.add('rtl');
-    document.documentElement.lang = lang;
-  } else {
-    document.body.classList.remove('rtl');
-    document.documentElement.lang = lang;
-  }
-  document.querySelectorAll('.lang-link').forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('data-lang') === lang) link.classList.add('active');
-  });
-  const langData = translations[lang] || {};
-  document.querySelectorAll('[data-translate-key]').forEach(element => {
-    const key = element.getAttribute('data-translate-key');
-    let text = langData[key];
-    if (!text && lang === 'fr') { text = originalTexts[key]; }
-    if (text) { element.innerHTML = text; }
-  });
-}
+
+// IMPORTANT: Pour que le formulaire marche, allez sur https://formspree.io/
+// Créez un compte gratuit, créez un nouveau formulaire, et remplacez "YOUR_UNIQUE_CODE"
+// dans le code ci-dessus par le code que Formspree vous donnera. C'est tout !
 </script>
 </body>
 </html>
