@@ -101,8 +101,8 @@ footer { background: var(--dark); color: #94a3b8; padding: 50px 20px; text-align
     <h1>Reprenez le Contrôle de Vos <span>Données</span>.</h1>
     <p>La plateforme tout-en-un pour créer formulaires, quiz et systèmes de réservation, hébergée sur votre propre Google Drive. Sans abonnement.</p>
     <div class="hero-image-container">
-        <!-- REMPLACEZ 'image-hologram.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
-        <img src="XNK3I.jpg" alt="Dashboard SmartForm Builder">
+        <!-- REMPLACEZ 'hologram.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
+        <img src="hologram.jpg" alt="Dashboard SmartForm Builder">
     </div>
 </section>
 
@@ -124,8 +124,8 @@ footer { background: var(--dark); color: #94a3b8; padding: 50px 20px; text-align
             </ul>
         </div>
         <div class="showcase-img">
-            <!-- REMPLACEZ 'image-medical.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
-            <img src="U5cTF.jpg" alt="SmartForm Builder pour clinique médicale">
+            <!-- REMPLACEZ 'medical.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
+            <img src="medical.jpg" alt="SmartForm Builder pour clinique médicale">
         </div>
     </div>
 
@@ -142,8 +142,8 @@ footer { background: var(--dark); color: #94a3b8; padding: 50px 20px; text-align
             </ul>
         </div>
         <div class="showcase-img">
-            <!-- REMPLACEZ 'image-law.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
-            <img src="8xVb1.jpg" alt="SmartForm Builder pour cabinet d'avocats">
+            <!-- REMPLACEZ 'law.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
+            <img src="law.jpg" alt="SmartForm Builder pour cabinet d'avocats">
         </div>
     </div>
 
@@ -160,8 +160,8 @@ footer { background: var(--dark); color: #94a3b8; padding: 50px 20px; text-align
             </ul>
         </div>
         <div class="showcase-img">
-            <!-- REMPLACEZ 'image-education.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
-            <img src="OxEHG.jpg" alt="SmartForm Builder pour le secteur éducatif">
+            <!-- REMPLACEZ 'education.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
+            <img src="education.jpg" alt="SmartForm Builder pour le secteur éducatif">
         </div>
     </div>
 
@@ -178,8 +178,8 @@ footer { background: var(--dark); color: #94a3b8; padding: 50px 20px; text-align
             </ul>
         </div>
         <div class="showcase-img">
-            <!-- REMPLACEZ 'image-gym.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
-            <img src="oF87V.jpg" alt="SmartForm Builder pour salle de sport">
+            <!-- REMPLACEZ 'gym.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
+            <img src="gym.jpg" alt="SmartForm Builder pour salle de sport">
         </div>
     </div>
 
@@ -215,8 +215,6 @@ footer { background: var(--dark); color: #94a3b8; padding: 50px 20px; text-align
 <!-- ============================================= -->
 <section class="pricing-section" id="pricing">
     <h2>Nos Licences à Vie</h2>
-    <!-- (Ici vous pouvez ajouter vos cartes de prix comme avant) -->
-    <!-- J'ai mis un texte simple pour l'instant -->
     <p style="color: #94a3b8; max-width: 600px; margin: 0 auto;">Nous proposons deux licences à paiement unique : Standard à 1500€ et Premium (avec accompagnement) à 2000€. Contactez-nous pour plus de détails.</p>
 </section>
 
@@ -229,7 +227,7 @@ footer { background: var(--dark); color: #94a3b8; padding: 50px 20px; text-align
 document.getElementById('contact-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Empêche l'envoi normal du formulaire
 
-    // Vos informations (À MODIFIER)
+    // Vos informations (À MODIFIER SI NÉCESSAIRE)
     const yourEmail = "khfuma@gmail.com";
     const yourWhatsAppNumber = "+212698855901";
 
@@ -237,11 +235,9 @@ document.getElementById('contact-form').addEventListener('submit', function(even
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const message = document.getElementById('message').value;
-    const subject = `Nouveau message de ${name} via la brochure SmartForm`;
 
-    // 1. Envoi par Email via un service externe (Formspree, gratuit pour commencer)
-    // C'est la méthode la plus fiable depuis une page statique GitHub.
-    fetch(`https://formspree.io/f/YOUR_UNIQUE_CODE`, { // REMPLACEZ VOTRE CODE FORMSPREE ICI
+    // 1. Envoi par Email via Formspree (fiable pour GitHub Pages)
+    fetch(`https://formspree.io/f/YOUR_UNIQUE_CODE`, { // REMPLACEZ PAR VOTRE CODE FORMSPREE
         method: 'POST',
         body: JSON.stringify({ name: name, email: email, message: message }),
         headers: { 'Content-Type': 'application/json' }
@@ -256,16 +252,12 @@ document.getElementById('contact-form').addEventListener('submit', function(even
             alert('Merci ! Votre message a été envoyé. Nous vous redirigeons vers WhatsApp.');
             document.getElementById('contact-form').reset();
         } else {
-            alert('Une erreur est survenue. Veuillez réessayer.');
+            alert('Une erreur est survenue lors de l\'envoi de l\'email. Veuillez réessayer.');
         }
     }).catch(error => {
         alert('Une erreur est survenue. Veuillez réessayer.');
     });
 });
-
-// IMPORTANT: Pour que le formulaire marche, allez sur https://formspree.io/
-// Créez un compte gratuit, créez un nouveau formulaire, et remplacez "YOUR_UNIQUE_CODE"
-// dans le code ci-dessus par le code que Formspree vous donnera. C'est tout !
 </script>
 </body>
 </html>
