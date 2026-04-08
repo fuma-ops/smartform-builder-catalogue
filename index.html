@@ -51,6 +51,14 @@ h1, h2, h3 { font-weight: 800; letter-spacing: -0.03em; color: var(--dark); line
 .showcase-img { flex: 1.2; }
 .showcase-img img { width: 100%; border-radius: 24px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
 
+/* BOÎTE D'INSTRUCTIONS DÉMO */
+.demo-instructions { background: rgba(255,255,255,0.1); padding: 30px; border-radius: 16px; margin: 40px auto 0; max-width: 800px; border: 1px solid rgba(255,255,255,0.2); text-align: left; }
+.demo-instructions h3 { color: white; font-size: 1.5rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+.demo-credentials { display: flex; gap: 20px; margin-bottom: 20px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; }
+.demo-credentials p { margin: 0; font-size: 1.1rem; color: #fff; }
+.demo-credentials code { background: var(--primary); color: var(--dark); padding: 4px 10px; border-radius: 4px; font-weight: 700; font-size: 1.2rem; }
+.demo-note { font-size: 0.95rem; color: #cbd5e1; border-left: 4px solid #f59e0b; padding-left: 15px; margin: 0; }
+
 /* FORMULAIRE DE CONTACT */
 .contact-section { background: #eef2ff; padding: 100px 40px; }
 .contact-container { max-width: 800px; margin: 0 auto; background: white; padding: 50px; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); text-align: center; }
@@ -67,13 +75,14 @@ footer { background: var(--dark); color: #94a3b8; padding: 50px 20px; text-align
 
 /* Responsive */
 @media(max-width: 900px) {
-  .floating-actions { padding: 8px; gap: 5px; }
+  .floating-actions { padding: 8px; gap: 5px; flex-wrap: wrap; justify-content: center; width: 90%; }
   .floating-btn { padding: 8px 15px; font-size: 0.8rem; }
   .hero h1 { font-size: 2.5rem; }
   .showcase-row, .showcase-row:nth-child(even) { flex-direction: column; gap: 30px; }
   .showcase-text h2 { font-size: 2rem; }
   .contact-section { padding: 60px 20px; }
   .contact-container { padding: 30px 20px; }
+  .demo-credentials { flex-direction: column; gap: 10px; }
 }
 </style>
 </head>
@@ -89,9 +98,6 @@ footer { background: var(--dark); color: #94a3b8; padding: 50px 20px; text-align
     <a href="#contact" class="floating-btn">
         <i class="fa-solid fa-envelope"></i> Contact
     </a>
-    <a href="#pricing" class="floating-btn">
-        <i class="fa-solid fa-tag"></i> Acheter une Licence
-    </a>
 </div>
 
 <!-- ============================================= -->
@@ -100,9 +106,21 @@ footer { background: var(--dark); color: #94a3b8; padding: 50px 20px; text-align
 <section class="hero">
     <h1>Reprenez le Contrôle de Vos <span>Données</span>.</h1>
     <p>La plateforme tout-en-un pour créer formulaires, quiz et systèmes de réservation, hébergée sur votre propre Google Drive. Sans abonnement.</p>
+    
+    <!-- INSTRUCTIONS DE CONNEXION DÉMO -->
+    <div class="demo-instructions">
+        <h3><i class="fa-solid fa-key text-warning"></i> Comment tester la Démo Live ?</h3>
+        <div class="demo-credentials">
+            <p>Identifiant : <code>demo</code></p>
+            <p>Mot de passe : <code>demo2026</code></p>
+        </div>
+        <p class="demo-note">
+            <strong>Note sur la Démo :</strong> L'environnement de démonstration est un espace de test public. Pour des raisons de sécurité, le module <b>"Utilisateurs & Accès"</b> (permettant de créer des comptes et de gérer les droits granulaires) est désactivé dans cette version. Cette fonctionnalité essentielle est bien entendu incluse dans les licences Standard et Premium. L'environnement de démo est réinitialisé toutes les nuits.
+        </p>
+    </div>
+
     <div class="hero-image-container">
-        <!-- REMPLACEZ 'hologram.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
-        <img src="hologram.jpg" alt="Dashboard SmartForm Builder">
+        <img src="XNK3I.jpg" alt="Dashboard SmartForm Builder">
     </div>
 </section>
 
@@ -124,8 +142,7 @@ footer { background: var(--dark); color: #94a3b8; padding: 50px 20px; text-align
             </ul>
         </div>
         <div class="showcase-img">
-            <!-- REMPLACEZ 'medical.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
-            <img src="medical.jpg" alt="SmartForm Builder pour clinique médicale">
+            <img src="U5cTF.jpg" alt="SmartForm Builder pour clinique médicale">
         </div>
     </div>
 
@@ -142,8 +159,7 @@ footer { background: var(--dark); color: #94a3b8; padding: 50px 20px; text-align
             </ul>
         </div>
         <div class="showcase-img">
-            <!-- REMPLACEZ 'law.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
-            <img src="law.jpg" alt="SmartForm Builder pour cabinet d'avocats">
+            <img src="8xVb1.jpg" alt="SmartForm Builder pour cabinet d'avocats">
         </div>
     </div>
 
@@ -160,8 +176,7 @@ footer { background: var(--dark); color: #94a3b8; padding: 50px 20px; text-align
             </ul>
         </div>
         <div class="showcase-img">
-            <!-- REMPLACEZ 'education.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
-            <img src="education.jpg" alt="SmartForm Builder pour le secteur éducatif">
+            <img src="OxEHG.jpg" alt="SmartForm Builder pour le secteur éducatif">
         </div>
     </div>
 
@@ -178,44 +193,44 @@ footer { background: var(--dark); color: #94a3b8; padding: 50px 20px; text-align
             </ul>
         </div>
         <div class="showcase-img">
-            <!-- REMPLACEZ 'gym.jpg' PAR LE VRAI NOM DE VOTRE IMAGE -->
-            <img src="gym.jpg" alt="SmartForm Builder pour salle de sport">
+            <img src="oF87V.jpg" alt="SmartForm Builder pour salle de sport">
         </div>
     </div>
 
 </main>
 
 <!-- ============================================= -->
-<!-- SECTION 4 : FORMULAIRE DE CONTACT       -->
+<!-- SECTION 4 : FORMULAIRE DE CONTACT & ACHAT     -->
 <!-- ============================================= -->
 <section class="contact-section" id="contact">
     <div class="contact-container">
-        <h2>Contactez-nous</h2>
-        <p>Une question ? Intéressé par une licence ? Remplissez ce formulaire et nous vous répondrons dans les plus brefs délais.</p>
+        <h2>Une question ? Prêt à acheter ?</h2>
+        <p>Nous proposons deux licences à paiement unique : <strong>Standard à 1500€</strong> et <strong>Premium (avec accompagnement) à 2000€</strong>. Remplissez ce formulaire pour commander ou obtenir plus d'informations.</p>
+        
         <form id="contact-form" class="contact-form">
             <div class="form-group">
-                <label for="name">Votre Nom</label>
+                <label for="name">Votre Nom ou Entreprise</label>
                 <input type="text" id="name" name="name" required>
             </div>
             <div class="form-group">
-                <label for="email">Votre Email</label>
+                <label for="email">Votre Email (pour vous recontacter)</label>
                 <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="message">Votre Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
+                <label for="subject">Sujet de votre demande</label>
+                <select id="subject" name="subject" class="form-control" style="width:100%; padding:15px; border-radius:12px; border:1px solid #d1d5db; font-family:'Inter', sans-serif;" required>
+                    <option value="Achat de Licence">Je souhaite acheter une Licence</option>
+                    <option value="Question sur le produit">J'ai une question sur SmartForm Builder</option>
+                    <option value="Demande de démo privée">Je souhaite une démo privée en visio</option>
+                </select>
             </div>
-            <button type="submit"><i class="fa-solid fa-paper-plane"></i> Envoyer le Message</button>
+            <div class="form-group">
+                <label for="message">Votre Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Dites-nous en plus sur vos besoins..." required></textarea>
+            </div>
+            <button type="submit"><i class="fa-solid fa-paper-plane"></i> Envoyer la demande</button>
         </form>
     </div>
-</section>
-
-<!-- ============================================= -->
-<!-- SECTION 5 : TARIFS (ID pour le bouton flottant)-->
-<!-- ============================================= -->
-<section class="pricing-section" id="pricing">
-    <h2>Nos Licences à Vie</h2>
-    <p style="color: #94a3b8; max-width: 600px; margin: 0 auto;">Nous proposons deux licences à paiement unique : Standard à 1500€ et Premium (avec accompagnement) à 2000€. Contactez-nous pour plus de détails.</p>
 </section>
 
 <footer>
@@ -225,38 +240,35 @@ footer { background: var(--dark); color: #94a3b8; padding: 50px 20px; text-align
 <script>
 // --- Script pour le formulaire de contact ---
 document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Empêche l'envoi normal du formulaire
+    event.preventDefault(); // Empêche le rechargement de la page
 
-    // Vos informations (À MODIFIER SI NÉCESSAIRE)
-    const yourEmail = "khfuma@gmail.com";
+    // VOS COORDONNÉES
     const yourWhatsAppNumber = "+212698855901";
 
     // Récupération des données du formulaire
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
+    const subject = document.getElementById('subject').value;
     const message = document.getElementById('message').value;
 
-    // 1. Envoi par Email via Formspree (fiable pour GitHub Pages)
-    fetch(`https://formspree.io/f/YOUR_UNIQUE_CODE`, { // REMPLACEZ PAR VOTRE CODE FORMSPREE
+    // 1. Envoi silencieux via Formspree (L'email pour vous)
+    // IMPORTANT : Remplacez "YOUR_UNIQUE_CODE" par le code que vous donne Formspree (https://formspree.io/)
+    fetch(`https://formspree.io/f/YOUR_UNIQUE_CODE`, { 
         method: 'POST',
-        body: JSON.stringify({ name: name, email: email, message: message }),
+        body: JSON.stringify({ name: name, email: email, subject: subject, message: message }),
         headers: { 'Content-Type': 'application/json' }
-    }).then(response => {
-        if (response.ok) {
-            // 2. Redirection vers WhatsApp après l'envoi de l'email
-            const whatsappMessage = `Bonjour, je suis ${name}. Je vous contacte via votre site SmartForm Builder. Mon message est : "${message}". Mon email est ${email}.`;
-            const whatsappUrl = `https://wa.me/${yourWhatsAppNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-            window.open(whatsappUrl, '_blank');
-            
-            // Affiche un message de succès
-            alert('Merci ! Votre message a été envoyé. Nous vous redirigeons vers WhatsApp.');
-            document.getElementById('contact-form').reset();
-        } else {
-            alert('Une erreur est survenue lors de l\'envoi de l\'email. Veuillez réessayer.');
-        }
-    }).catch(error => {
-        alert('Une erreur est survenue. Veuillez réessayer.');
-    });
+    }).catch(error => { console.log('Erreur silencieuse Formspree', error); });
+
+    // 2. Ouverture immédiate de WhatsApp pour le client (Plus direct et engageant)
+    const whatsappMessage = `Bonjour, je suis ${name} (${email}).\nJe vous contacte concernant : *${subject}*.\n\nMon message : "${message}"`;
+    const whatsappUrl = `https://wa.me/${yourWhatsAppNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+    
+    // Ouvre WhatsApp dans un nouvel onglet
+    window.open(whatsappUrl, '_blank');
+    
+    // Message de confirmation sur le site
+    alert('Merci ! Votre demande a été préparée. WhatsApp va s\'ouvrir pour envoyer le message directement à notre équipe.');
+    document.getElementById('contact-form').reset();
 });
 </script>
 </body>
